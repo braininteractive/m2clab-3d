@@ -1,0 +1,20 @@
+web:
+  image: crollalowis/nginx-php5
+  ports:
+    - "80:80"
+  volumes:
+    - .:/var/www
+    - ./compose/config/nginx:/etc/nginx/sites-enabled:rw
+    - ./compose/logs/nginx:/var/log/nginx:rw
+  links:
+    - db
+
+db:
+  image: crollalowis/mysql
+  volumes:
+    - ./compose/data/mysql:/var/lib/mysql
+    - ./sql:/root/sql-import
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_PASS: 123

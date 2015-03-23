@@ -1,0 +1,4 @@
+192.168.59.3 - - [23/Mar/2015:09:49:15 +0000] "GET / HTTP/1.1" 200 207 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+192.168.59.3 - - [23/Mar/2015:09:49:15 +0000] "GET /js/bundle-04d11fed.js HTTP/1.1" 200 1018 "http://boilerplate.app/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+192.168.59.3 - - [23/Mar/2015:09:49:15 +0000] "GET /css/main-6be7f4d6.css HTTP/1.1" 200 91 "http://boilerplate.app/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
+192.168.59.3 - - [23/Mar/2015:09:49:15 +0000] "GET /favicon.ico HTTP/1.1" 200 32 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
