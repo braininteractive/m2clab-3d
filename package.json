@@ -7,14 +7,6 @@
   },
   "author": "Christian Maniewski <chmanie@fastmail.com>",
   "license": "MIT",
-  "browserify-concat": {
-    "beforeBundle": [
-      "foo.js"
-    ],
-    "afterBundle": [
-      "bar.js"
-    ]
-  },
   "repository": "https://github.com/chmanie/gulp-browserify-6to5.git",
   "devDependencies": {
     "babelify": "^5.0.4",
