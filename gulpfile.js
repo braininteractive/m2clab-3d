@@ -10,8 +10,9 @@ var g = require('gulp-load-plugins')();
 
 var runSequence = require('run-sequence');
 var memRev = require('./utils/gulp-memrev');
+var browserifyConcatFiles = require('./utils/gulp-browserify-concat');
 var del = require('del');
-var to5ify = require('babelify');
+var babelify = require('babelify');
 var karma = require('karma');
 
 var DIST = false;
@@ -105,15 +106,18 @@ gulp.task('sass', function () {
 });
 
 gulp.task('browserify', ['lint'], function() {
+
   var stream = gulp.src(SRC_PATH + '/js/index.js')
     .pipe(g.plumber({errorHandler: g.notify.onError('Browserify: <%= error.message %>')}))
     .pipe(g.browserify2({
       fileName: 'bundle.js',
-      transform: to5ify,
+      transform: babelify,
       options: {
         debug: !DIST
       }
-    }));
+    }))
+    .pipe(browserifyConcatFiles())
+    .pipe(g.concat('bundle.js'));
 
   if (DIST) {
     stream = stream
