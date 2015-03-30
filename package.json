@@ -1,6 +1,6 @@
 {
-  "name": "slush-es6-browserify-sass",
-  "version": "0.0.1",
+  "name": "cl-frontend-backend-boilerplate",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "test": "node_modules/.bin/gulp test"
