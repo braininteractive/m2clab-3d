@@ -3,10 +3,17 @@
 # This script will create the database DATABASE in the docker db container
 # and also import the sql dump from the file specified in the command line (SQLDUMP)
 #
+# you can set env variables before calling to set up a different DB name or SQL dump file
+# also the first parameter will be used as the path to the SQL dump file and override all previous settings
 #
+# e.g. $ DATABASE=my_db_name ./import-to-docker ./my-sql-file.sql
+#
+# or: $ DATABASE=my_db_name SQLDUMP=./my-sql-file.sql ./import-to-docker
 
-DATABASE="boilerplate_local"
-SQLDUMP="boilerplate_local_dump.sql"
+
+
+DATABASE=${DATABASE:=boilerplate_local}
+SQLDUMP=${SQLDUMP:=boilerplate_local_dump.sql}
 
 if [ $1 ]
 then
