@@ -1,0 +1,107 @@
+2016/01/17 14:14:44 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 14:14:44 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/17 14:14:45 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 14:14:46 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 14:14:47 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 14:14:47 [error] 49#0: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:52:04 [error] 49#0: *191 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting identifier (T_STRING) in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:54:59 [error] 49#0: *193 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting identifier (T_STRING) in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:55:03 [error] 49#0: *193 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting identifier (T_STRING) in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:55:38 [error] 49#0: *200 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting identifier (T_STRING) in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:55:40 [error] 49#0: *200 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected '\' (T_NS_SEPARATOR), expecting identifier (T_STRING) in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:56:02 [error] 49#0: *203 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:56:10 [error] 49#0: *203 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:56:12 [error] 49#0: *203 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:56:26 [error] 49#0: *203 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:56:28 [error] 49#0: *203 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:58:18 [error] 49#0: *209 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:58:38 [error] 49#0: *211 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:58:50 [error] 49#0: *211 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 15:58:58 [error] 49#0: *211 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+PHP message: PHP Fatal error:  Unknown: Failed opening required '/var/www/dist/index.php' (include_path='.:/usr/share/php:/usr/share/pear') in Unknown on line 0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:00:48 [error] 49#0: *215 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:01:16 [error] 49#0: *217 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:06 [error] 49#0: *219 FastCGI sent in stderr: "PHP message: PHP Parse error:  syntax error, unexpected ')' in /var/www/dist/index.php on line 64" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:28 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:29 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:32 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:43 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:43 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:45 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:46 [error] 49#0: *221 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:02:47 [error] 49#0: *233 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:02 [error] 49#0: *235 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:29 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:40 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+PHP message: PHP Fatal error:  Unknown: Failed opening required '/var/www/dist/index.php' (include_path='.:/usr/share/php:/usr/share/pear') in Unknown on line 0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:41 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+Unable to open primary script: /var/www/dist/index.php (No such file or directory)" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:42 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+Unable to open primary script: /var/www/dist/index.php (No such file or directory)" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:43 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:03:45 [error] 49#0: *237 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:04:01 [error] 49#0: *244 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:04:07 [error] 49#0: *244 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET /model/2 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:04:21 [error] 49#0: *244 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET /model/2 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:04:22 [error] 49#0: *244 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET /model/2 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:05:32 [error] 49#0: *257 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:05:44 [error] 49#0: *257 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/17 16:05:49 [error] 49#0: *257 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Class 'RedBean_Facade' not found in /var/www/dist/index.php on line 22
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"

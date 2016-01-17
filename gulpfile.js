@@ -53,7 +53,8 @@ gulp.task('images', function () {
 
 gulp.task('assets', function () {
     return gulp.src([
-      SRC_PATH + '/fonts/**/*'
+      SRC_PATH + '/fonts/**/*',
+      SRC_PATH + '/models/**/*'
       // , ... more
     ], { base : SRC_PATH })
     .pipe(gulp.dest(CURRENT_PATH));
@@ -81,8 +82,9 @@ gulp.task('sass', function () {
     .pipe(g.sourcemaps.init())
     .pipe(g.sass({
       includePaths: [
-        './bower_components',
-        './node_modules'
+          'node_modules/foundation-apps/scss/',
+          'node_modules/font-awesome/scss/',
+          'node_modules/cl-frontend-utils/src/scss/'
       ]
     }))
     .pipe(g.autoprefixer({
@@ -107,7 +109,7 @@ gulp.task('sass', function () {
 
 gulp.task('browserify', ['lint'], function() {
 
-  var stream = gulp.src(SRC_PATH + '/js/index.js')
+  var stream = gulp.src([SRC_PATH + '/js/index.js'])
     .pipe(g.plumber({errorHandler: g.notify.onError('Browserify: <%= error.message %>')}))
     .pipe(g.browserify2({
       fileName: 'bundle.js',
@@ -133,7 +135,7 @@ gulp.task('browserify', ['lint'], function() {
 });
 
 gulp.task('lint', function () {
-  return gulp.src(SRC_PATH + '/js/**/*.js')
+  return gulp.src([SRC_PATH + '/js/**/*.js', '!' + SRC_PATH + '/js/vendor/**/*.js'])
     .pipe(g.plumber({errorHandler: g.notify.onError('<%= error.message %>')}))
     .pipe(g.cached('linting'))
     .pipe(g.jshint())

@@ -6,6 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use RedBean_Facade as R;
 
 // use Acme\MyClass;
 // $myClass = new MyClass();
@@ -58,7 +59,27 @@ $app->get('/favicon.ico', function() use ($app) { return true; });
 
 
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('page/homepage.twig');
+    return $app['twig']->render('page/homepage.twig', array(
+        "shops" => array(
+            1 => array(
+                "name" => "BMW",
+                "description" => "Description",
+                "image" => "/image/image.jpg"
+            )
+        )
+    ));
+});
+
+$app->get('/model/{model}', function($model) use ($app) {
+    return $app['twig']->render('page/model.twig', array(
+        "model" => $model
+    ));
+});
+
+$app->get('/shop/{shop}', function($shop) use ($app) {
+    return $app['twig']->render('page/shop.twig', array(
+        "shop" => $shop
+    ));
 });
 
 // -------- ERROR HANDLING -------
@@ -80,7 +101,7 @@ $app->error(function (\Exception $e, $code) use ($app)
         echo "</pre>";
     } else {
         $app['logger']->addError(sprintf("%s: %s: %d", $code, $message, $e));
-        return $app['twig']->render('layouts/404.twig', ['code' => $code, 'message' => $message]);
+        return $app['twig']->render('layout/404.twig', ['code' => $code, 'message' => $message]);
     }
 
 });

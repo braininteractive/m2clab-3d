@@ -1,17 +1,39 @@
-@import
-  'utils/variables',
-  'utils/functions',
-  'utils/mixins';
+/* Settings */
+@import "base/settings";
+@import "vendor/foundation-settings";
 
-@import
-  'base/typography';
+/* Foundation */
+//@import "normalize";
+@import "foundation";
 
-@import
-  'layout/header',
-  'layout/footer';
+/* Base Definitions */
+@import "font-awesome";
+@import "base/typography";
+@import "base/colors";
 
-@import
-  'components/buttons';
+/* Mixins/Utilites */
+@import "cl-frontend-utils/mixins/images";
+@import "cl-frontend-utils/components/helpers";
+@import "cl-frontend-utils/layout/utilities";
+@import "cl-frontend-utils/layout/sections";
+@import "cl-frontend-utils/layout/positioning";
 
-@import
-  'pages/home';
+/* Vendor */
+@import "vendor/swiper";
+
+/* Layouts */
+@import "layout/sections";
+@import "layout/site";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/sidebar";
+
+/* Pages */
+@import "pages/home";
+//@import "pages/programm";
+
+/* Components */
+@import "components/component";
+@import "components/gui";
+@import "components/renderer";
+@import "components/buttons";

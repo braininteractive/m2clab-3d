@@ -1,0 +1,17 @@
+.dg .property-name, .dg .c input{
+  font-size: 12px !important;
+}
+
+.dg .c:hover .selector, .dg .selector.drag {
+  display: block;
+  box-sizing: content-box;
+}
+
+.dg.ac{
+  top: rem-calc(80) !important;
+  z-index: 1 !important;
+}
+
+input[type=text]{
+  height: auto !important;
+}

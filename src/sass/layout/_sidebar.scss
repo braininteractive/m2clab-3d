@@ -1,0 +1,24 @@
+.sidebar{
+  &--head{
+    height: 100px;
+    width: 100%;
+    background-color: $color--fh-aachen;
+    h1{
+      font-family: Roboto-Bold;
+      font-size: 20px;
+      color: #FFFFFF;
+      line-height: 24px;
+    }
+
+  }
+}
+
+.price-tag{
+  font-family: Roboto-Regular;
+  font-size: 48px;
+  color: #FFFFFF;
+  line-height: 57px;
+  &:after {
+    content: '€';
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "model": "ktoolcor.stl",
+  "attributes": {
+    "width": {
+      "type": "integer",
+      "range": {
+        "min": 0.1,
+        "max": 5
+      },
+      "initial": 2,
+      "price": 1
+    },
+    "height": {
+      "type": "integer",
+      "range": {
+        "min": 0.1,
+        "max": 5
+      },
+      "initial": 2,
+      "price": 1
+    },
+    "depth": {
+      "type": "integer",
+      "range": {
+        "min": 0.1,
+        "max": 5
+      },
+      "initial": 2,
+      "price": 1
+    },
+    "color": {
+      "type": "color",
+      "initial": 2,
+      "price": 1
+    },
+    "display": {
+      "type": "checkbox",
+      "initial": false
+    },
+    "text": {
+      "type": "text",
+      "initial": "Testing...",
+      "price": 1
+    }
+  }
+}
