@@ -2330,3 +2330,251 @@ Unable to open primary script: /var/www/dist/index.php (No such file or director
 2016/01/18 20:39:44 [alert] 49#0: *1102 pread() read only 7839 of 9242 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
 2016/01/18 20:39:45 [alert] 49#0: *1104 pread() read only 7839 of 9242 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
 2016/01/18 20:40:49 [alert] 49#0: *1114 pread() read only 7839 of 9142 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 20:55:02 [alert] 46#0: *1158 pread() read only 7839 of 9268 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 20:56:50 [alert] 47#0: *1172 pread() read only 9741 of 9781 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 20:56:51 [alert] 47#0: *1174 pread() read only 9741 of 9781 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 20:56:51 [alert] 47#0: *1176 pread() read only 9741 of 9781 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 20:56:51 [alert] 47#0: *1177 pread() read only 9741 of 9781 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 20:56:53 [alert] 47#0: *1178 pread() read only 9741 of 9781 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:10:23 [error] 49#0: *1226 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:10:24 [error] 49#0: *1226 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:10:43 [error] 49#0: *1232 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:10:44 [error] 49#0: *1232 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:10:55 [error] 49#0: *1232 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+PHP message: PHP Fatal error:  Unknown: Failed opening required '/var/www/dist/index.php' (include_path='.:/usr/share/php:/usr/share/pear') in Unknown on line 0" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:10:56 [error] 49#0: *1232 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:11:12 [error] 49#0: *1237 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:11:57 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:11:59 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:00 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:01 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:11 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:12 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:13 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:13 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:19 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:20 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:21 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:22 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:34 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:35 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:49 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:50 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:58 [error] 49#0: *1239 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:12:58 [error] 49#0: *1259 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"

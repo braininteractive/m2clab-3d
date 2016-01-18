@@ -1,12 +1,12 @@
 .sidebar{
   &--head{
-    height: 100px;
     width: 100%;
     padding: 15px;
     h1{
       font-size: 30px;
       color: #333;
       text-transform: uppercase;
+      font-weight: 200;
     }
     hr{
       width: 40px;
