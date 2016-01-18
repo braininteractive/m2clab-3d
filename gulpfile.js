@@ -78,13 +78,13 @@ gulp.task('serve', function (done) {
 
 gulp.task('sass', function () {
   var stream = gulp.src(SRC_PATH + '/sass/main.scss')
-    .pipe(g.plumber({errorHandler: g.notify.onError('Sass: <%= error.message %>')}))
+    .pipe(g.plumber({errorHandler: g.notify.onError('Sass: <%= error %>')}))
     .pipe(g.sourcemaps.init())
     .pipe(g.sass({
       includePaths: [
-          'node_modules/foundation-apps/scss/',
-          'node_modules/font-awesome/scss/',
-          'node_modules/cl-frontend-utils/src/scss/'
+          './node_modules/foundation-sites/scss/',
+          './node_modules/font-awesome/scss/',
+          './node_modules/cl-frontend-utils/src/scss/'
       ]
     }))
     .pipe(g.autoprefixer({

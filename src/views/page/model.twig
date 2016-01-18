@@ -2,30 +2,20 @@
 
 {% block content %}
         <script>const model = '{{ model }}';</script>
-        <div class="grid-block medium-8 vertical">
+        <div class="columns medium-7 no-padding">
             <div id="renderer"></div>
             Breite: <span id="sizeX"></span>cm<br>
             Höhe: <span id="sizeY"></span>cm<br>
             Tiefe: <span id="sizeZ"></span>cm<br>
         </div>
-        <div class="grid-block medium-4 vertical">
+        <div class="columns medium-5 no-padding modelling">
             <div class="sidebar--head">
-                <h1>Brillenbügel</h1>
-                <span class="price-tag">100</span>
+                <h1>{{ model }}</h1>
+                <hr>
+                <div class="modelling--subtitle">Preis</div>
+                <div class="price-tag">100</div>
             </div>
-            <div class="sidebar--controls">
-                <div zf-tabs="">
-                    <div zf-tab="" title="Tab 1">
-                        Tab content 1
-                    </div>
-                    <div zf-tab="" title="Tab 2">
-                        Tab content 2
-                    </div>
-                    <div zf-tab="" title="Tab 3">
-                        Tab content 3
-                    </div>
-                </div>
-            </div>
+
             <a id="save" class="button">Save</a>
         </div>
 {% endblock %}

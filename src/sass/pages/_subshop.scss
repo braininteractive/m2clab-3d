@@ -1,0 +1,40 @@
+.subshop {
+  position: relative;
+  text-transform: uppercase;
+  margin: 0 20px;
+  &--link {
+    color: #333;
+    h2{
+      font-weight: 200;
+      margin-bottom: 10px;
+    }
+    span{
+      padding-bottom: 6px;
+      border-bottom: 2px solid #fb9987;
+      font-weight: 600;
+    }
+  }
+}
+
+.model{
+  &:hover {
+
+  }
+  &--image {
+    display: block;
+    background: #eef1f8;
+    height: 50vw;
+    width: 100%;
+    @include breakpoint($medium-up) {
+      height: 33vw;
+    }
+    @include breakpoint($large-up) {
+      height: 25vw;
+    }
+  }
+  h2{
+    color: #333;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}

@@ -20,6 +20,8 @@ define('APP_ENV', $env);
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/$env.json"));
 
 // use $app['debug'], $app['db_name'], etc...
+R::setup("mysql:host={$app['db_host']};dbname={$app['db_name']}","{$app['db_user']}","{$app['db_pass']}");
+
 
 $app->register(new Silex\Provider\HttpCacheServiceProvider(), [
    'http_cache.cache_dir' => __DIR__ . '/http_cache/'
@@ -58,17 +60,7 @@ $app->before(function ($request, $app)
 $app->get('/favicon.ico', function() use ($app) { return true; });
 
 
-$app->get('/', function() use ($app) {
-    return $app['twig']->render('page/homepage.twig', array(
-        "shops" => array(
-            1 => array(
-                "name" => "BMW",
-                "description" => "Description",
-                "image" => "/image/image.jpg"
-            )
-        )
-    ));
-});
+$app->get('/', 'Acme\\PageController::showShops');
 
 $app->get('/model/{model}', function($model) use ($app) {
     return $app['twig']->render('page/model.twig', array(
@@ -76,11 +68,7 @@ $app->get('/model/{model}', function($model) use ($app) {
     ));
 });
 
-$app->get('/shop/{shop}', function($shop) use ($app) {
-    return $app['twig']->render('page/shop.twig', array(
-        "shop" => $shop
-    ));
-});
+$app->get('/shop/{shop}', 'Acme\\PageController::showShopModels');
 
 // -------- ERROR HANDLING -------
 

@@ -1,5 +1,5 @@
 
-@media #{$small-only} {
+@include breakpoint($small-only) {
     html, body {
         font-size: 80%;
     }
@@ -23,7 +23,7 @@ a {
 }
 
 b, strong, .strong {
-    font-weight: $font-weight-medium;
+    font-weight: $global-weight-normal;
 }
 
 .small {

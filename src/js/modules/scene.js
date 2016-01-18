@@ -84,7 +84,7 @@ function initGraphics(url) {
     var loader = new THREE.STLLoader();
 
 
-    loader.load('models/' + url + '.stl', function (geometry) {
+    loader.load('/models/' + url + '.stl', function (geometry) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
 
         var material = new THREE.MeshPhongMaterial({

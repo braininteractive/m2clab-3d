@@ -2,9 +2,10 @@
 @import "base/settings";
 @import "vendor/foundation-settings";
 
+
 /* Foundation */
-//@import "normalize";
 @import "foundation";
+@include foundation-everything;
 
 /* Base Definitions */
 @import "font-awesome";
@@ -18,8 +19,9 @@
 @import "cl-frontend-utils/layout/sections";
 @import "cl-frontend-utils/layout/positioning";
 
+@import "utils/helper";
 /* Vendor */
-@import "vendor/swiper";
+//@import "vendor/swiper";
 
 /* Layouts */
 @import "layout/sections";
@@ -30,10 +32,13 @@
 
 /* Pages */
 @import "pages/home";
-//@import "pages/programm";
+@import "pages/subshop";
+@import "pages/modelling";
+
 
 /* Components */
 @import "components/component";
 @import "components/gui";
 @import "components/renderer";
 @import "components/buttons";
+

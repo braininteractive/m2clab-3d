@@ -1,5 +1,22 @@
 {% extends('layout/base.twig') %}
 
 {% block content %}
-    <h1>{{ shop }}</h1>
+    <header>
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>{{ shop }}</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        {% for model in models %}
+            <div class="small-6 medium-4 large-3 columns model">
+                <a href="/model/{{ model.name }}">
+                    <div class="model--image"></div>
+                    <h2>{{ model.name }}</h2>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
