@@ -7,5 +7,5 @@ dist
 /default/
 .vagrant
 composer.lock
-compose/log
-compose/mysql
+compose/logs
+compose/data
