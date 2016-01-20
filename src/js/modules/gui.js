@@ -1,13 +1,12 @@
 var $ = require('jquery');
-var dat = require('dat-gui');
+//var dat = require('dat-gui');
 var THREE = require('three.js');
 var calculate = require('./calculate');
 require('../vendor/Roboto-Black_Regular');
 
-var gui = new dat.GUI();
+//var gui = new dat.GUI();
 var boxSize;
 var attributes;
-var params = {};
 var configs = {};
 var text;
 var SELECTED;
@@ -91,71 +90,126 @@ function scale(mesh) {
 }
 
 function buildGUI(data, mesh, scene) {
-    $.each( data.attributes, function( attr, defs ) {
-        params[attr] = defs.initial;
-        switch(defs.type){
-            case 'integer':
-                configs[attr] = gui.add(params, attr, defs.range.min, defs.range.max);
-                break;
-            case 'color':
-                configs[attr] = gui.addColor(params, attr);
-                break;
-            case 'text':
-                configs[attr] = gui.add(params, attr);
-                break;
-            case 'checkbox':
-                configs[attr] = gui.add(params, attr);
-                break;
-        }
-    });
 
-
-    $.each( configs, function( key, value ) {
-        switch (key){
+    $.each($('input'), function(index, input){
+        switch ($(input).attr('id')){
             case 'width':
-                value.onChange( function( scaleValue){
+                $(input).on('change', function(){
+                    var scaleValue = parseFloat($(this).val());
+                    console.log(scaleValue);
                     mesh.scale.set(scaleValue, params.height, params.depth);
                     scale(mesh);
                 });
                 break;
             case 'height':
-                value.onChange( function( scaleValue){
+                $(input).on('change', function(){
+                    var scaleValue = parseFloat($(this).val());
                     mesh.scale.set(params.width, scaleValue, params.depth);
                     scale(mesh);
                 });
                 break;
             case 'depth':
-                value.onChange( function( scaleValue){
+                $(input).on('change', function(){
+                    var scaleValue = parseFloat($(this).val());
                     mesh.scale.set(params.width, params.height, scaleValue);
                     scale(mesh);
                 });
                 break;
             case 'color':
-                value.onChange( function( colorValue){
+                $(input).on('change', function(){
+                    var colorValue = $(this).val();
                     var colorObject = new THREE.Color( colorValue );
                     mesh.material.color = colorObject;
                 });
                 break;
             case 'size':
-                value.onChange( function( scaleValue){
+                $(input).on('change', function(){
+                    var scaleValue = parseFloat($(this).val());
                     mesh.scale.set(scaleValue, scaleValue, scaleValue);
                     scale(mesh);
                 });
                 break;
             case 'text':
-                value.onFinishChange( function( textValue ){
+                $(input).on('change', function(){
+                    var textValue = $(this).val();
                     mesh.remove(text);
                     addEmbossing(scene, textValue);
                 });
                 break;
             case 'fontSize':
-                value.onFinishChange( function( fontSize ){
+                $(input).on('change', function(){
+                    var fontSize = $(this).val();
                     scene.remove(text);
                     addEmbossing(scene, fontSize);
                 });
                 break;
         }
     });
+    //$.each( data.attributes, function( attr, defs ) {
+    //    params[attr] = defs.initial;
+    //    switch(defs.type){
+    //        case 'integer':
+    //            configs[attr] = gui.add(params, attr, defs.range.min, defs.range.max);
+    //            break;
+    //        case 'color':
+    //            configs[attr] = gui.addColor(params, attr);
+    //            break;
+    //        case 'text':
+    //            configs[attr] = gui.add(params, attr);
+    //            break;
+    //        case 'checkbox':
+    //            configs[attr] = gui.add(params, attr);
+    //            break;
+    //    }
+    //});
+    //
+    //
+    //$.each( configs, function( key, value ) {
+    //    switch (key){
+    //        case 'width':
+    //            value.onChange( function( scaleValue){
+    //                mesh.scale.set(scaleValue, params.height, params.depth);
+    //                scale(mesh);
+    //            });
+    //            break;
+    //        case 'height':
+    //            value.onChange( function( scaleValue){
+    //                mesh.scale.set(params.width, scaleValue, params.depth);
+    //                scale(mesh);
+    //            });
+    //            break;
+    //        case 'depth':
+    //            value.onChange( function( scaleValue){
+    //                mesh.scale.set(params.width, params.height, scaleValue);
+    //                scale(mesh);
+    //            });
+    //            break;
+    //        case 'color':
+    //            value.onChange( function( colorValue){
+    //                var colorObject = new THREE.Color( colorValue );
+    //                mesh.material.color = colorObject;
+    //            });
+    //            break;
+    //        case 'size':
+    //            value.onChange( function( scaleValue){
+    //                mesh.scale.set(scaleValue, scaleValue, scaleValue);
+    //                scale(mesh);
+    //            });
+    //            break;
+    //        case 'text':
+    //            value.onFinishChange( function( textValue ){
+    //                mesh.remove(text);
+    //                addEmbossing(scene, textValue);
+    //            });
+    //            break;
+    //        case 'fontSize':
+    //            value.onFinishChange( function( fontSize ){
+    //                scene.remove(text);
+    //                addEmbossing(scene, fontSize);
+    //            });
+    //            break;
+    //    }
+    //});
 }
 
 function addEmbossing( scene, textValue) {

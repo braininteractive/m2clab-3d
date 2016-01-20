@@ -1,7 +1,17 @@
 {% extends('layout/base.twig') %}
 
 {% block content %}
-        <script>const model = '{{ model }}';</script>
+        <script>
+            const model = '{{ model }}';
+            var params = {
+                height: 0.5,
+                width: 0.5,
+                depth: 0.5,
+                color: '#222222',
+                positionY: -0.25,
+                text: 'Test'
+            };
+        </script>
         <div class="columns medium-7 no-padding">
             <div id="renderer"></div>
             Breite: <span id="sizeX"></span>cm<br>
@@ -18,7 +28,7 @@
             {% for attr in modelAttr %}
                 {% if attr.type == 'integer' %}
                     <label for="{{ attr.name }}">{{ attr.name }}</label>
-                    <input type="range" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}">
+                    <input type="range" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}" step="0.1">
                 {% elseif attr.type == 'text' %}
                     <label for="{{ attr.name }}">{{ attr.name }}</label>
                     <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
