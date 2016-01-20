@@ -39,7 +39,6 @@ THREE.STLLoader.prototype = {
     constructor: THREE.STLLoader,
 
     load: function ( url, onLoad, onProgress, onError ) {
-
         var scope = this;
 
         var loader = new THREE.XHRLoader( scope.manager );
@@ -91,6 +90,7 @@ THREE.STLLoader.prototype = {
             return false;
 
         };
+
 
         var binData = this.ensureBinary( data );
 

@@ -78,20 +78,26 @@ function initGraphics(url) {
 
     controls = new OrbitControls(camera, document.getElementById('renderer'));
 
-    light.init(scene);
+    light.init(scene, camera, controls);
     //STL-Loader
 
     var loader = new THREE.STLLoader();
 
+    console.log(url);
 
     loader.load('/models/' + url + '.stl', function (geometry) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
+        var material;
+        if (geometry.hasColors) {
+            material = new THREE.MeshPhongMaterial({ opacity: geometry.alpha, vertexColors: THREE.VertexColors });
+        } else {
+            material = new THREE.MeshPhongMaterial({
+                color: 0x787878,
+                specular: 0x111111,
+                shininess: 200
+            });
+        }
 
-        var material = new THREE.MeshPhongMaterial({
-            color: 0x787878,
-            specular: 0x111111,
-            shininess: 200
-        });
         mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(0, 0, 0);
         mesh.rotation.set(0, -Math.PI / 2, 0);
@@ -109,12 +115,8 @@ function initGraphics(url) {
         $('#sizeZ').text(sizeZ);
 
         calculate.price(sizeX * sizeY * sizeZ);
-
         scene.add(mesh);
-
         gui.init(boxSize, mesh, url, scene);
-        edges = new THREE.EdgesHelper( mesh, 0x00ff00 );
-        scene.add(edges);
 
     });
 }

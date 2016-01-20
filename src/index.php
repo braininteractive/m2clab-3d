@@ -62,7 +62,7 @@ $app->get('/favicon.ico', function() use ($app) { return true; });
 
 $app->get('/', 'Acme\\PageController::showShops');
 
-$app->get('/model/{model}', 'Acme\\PageController::showModel');
+$app->get('/shop/{shop}/{model}', 'Acme\\PageController::showModel');
 
 $app->get('/shop/{shop}', 'Acme\\PageController::showShopModels');
 

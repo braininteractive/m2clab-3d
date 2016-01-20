@@ -17,13 +17,8 @@ var objects = [];
 
 module.exports = {
     init: function(box, mesh, url, scene){
-        $.getJSON('../models/ktoolcor.json', function( data ) {
-
-            buildGUI(data, mesh, scene);
-
-            //addEmbossing(scene, mesh);
-        });
-
+        mesh.scale.set(params.width, params.height, params.depth);
+        buildGUI( mesh, scene);
 
     },
     moveText: function( event, camera, renderer, mesh ) {
@@ -89,14 +84,13 @@ function scale(mesh) {
     calculate.price(sizeX * sizeY * sizeZ);
 }
 
-function buildGUI(data, mesh, scene) {
-
+function buildGUI( mesh, scene) {
     $.each($('input'), function(index, input){
         switch ($(input).attr('id')){
             case 'width':
                 $(input).on('change', function(){
                     var scaleValue = parseFloat($(this).val());
-                    console.log(scaleValue);
+                    params.width = scaleValue;
                     mesh.scale.set(scaleValue, params.height, params.depth);
                     scale(mesh);
                 });
@@ -104,6 +98,7 @@ function buildGUI(data, mesh, scene) {
             case 'height':
                 $(input).on('change', function(){
                     var scaleValue = parseFloat($(this).val());
+                    params.height = scaleValue;
                     mesh.scale.set(params.width, scaleValue, params.depth);
                     scale(mesh);
                 });
@@ -111,6 +106,7 @@ function buildGUI(data, mesh, scene) {
             case 'depth':
                 $(input).on('change', function(){
                     var scaleValue = parseFloat($(this).val());
+                    params.depth = scaleValue;
                     mesh.scale.set(params.width, params.height, scaleValue);
                     scale(mesh);
                 });

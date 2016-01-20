@@ -1,11 +1,10 @@
 var THREE = require('three.js');
-
-
+var light = new THREE.DirectionalLight(0xdfebff, 1);
 module.exports = {
-    init: function (scene) {
-        var light = new THREE.DirectionalLight(0xdfebff, 1);
+    init: function (scene, camera, controls) {
+
         light.target.position.set(0, 0, 0);
-        light.position.set(0, 200, 0);
+        light.position.copy( camera.position );
         light.position.multiplyScalar(1.3);
 
         light.castShadow = true;
@@ -19,7 +18,11 @@ module.exports = {
 
         light.shadowCameraFar = 1000;
         light.shadowDarkness = 0.5;
+        light.position.copy( camera.position );
 
         scene.add(light);
+        controls.addEventListener( 'change', function(){
+            light.position.copy( camera.position );
+        });
     }
 };
