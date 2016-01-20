@@ -2578,3 +2578,143 @@ PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/
 PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
 PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
 PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/18 21:17:47 [error] 46#0: *1272 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/18 21:17:48 [error] 46#0: *1277 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/18 21:51:15 [alert] 46#0: *1282 pread() read only 7839 of 9004 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:55:40 [alert] 46#0: *1310 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:41 [alert] 46#0: *1314 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:41 [alert] 46#0: *1312 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:41 [alert] 46#0: *1315 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:43 [alert] 46#0: *1316 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:44 [alert] 46#0: *1318 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:45 [alert] 46#0: *1322 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:45 [alert] 46#0: *1320 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:45 [alert] 46#0: *1323 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:50 [alert] 46#0: *1326 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:51 [alert] 46#0: *1324 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:51 [alert] 46#0: *1329 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:55:51 [alert] 46#0: *1330 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:06 [alert] 46#0: *1333 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:07 [alert] 46#0: *1331 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:23 [alert] 46#0: *1338 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:29 [alert] 46#0: *1347 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:49 [alert] 46#0: *1351 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:50 [alert] 46#0: *1355 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:50 [alert] 46#0: *1353 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:50 [alert] 46#0: *1356 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:54 [alert] 46#0: *1357 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:56 [alert] 46#0: *1359 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:56 [alert] 48#0: *1362 pread() read only 9741 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:56:56 [alert] 48#0: *1363 pread() read only 9741 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:01 [alert] 48#0: *1364 pread() read only 9741 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:03 [alert] 46#0: *1369 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:03 [alert] 48#0: *1366 pread() read only 9741 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:03 [alert] 46#0: *1370 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:31 [alert] 46#0: *1377 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:32 [alert] 46#0: *1380 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:32 [alert] 46#0: *1375 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:32 [alert] 46#0: *1381 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:36 [alert] 46#0: *1382 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:57:58 [alert] 46#0: *1394 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:58:20 [alert] 46#0: *1396 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:58:20 [alert] 46#0: *1398 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:58:20 [alert] 46#0: *1399 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/shop/BMW"
+2016/01/18 21:58:34 [alert] 46#0: *1400 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/18 21:58:36 [alert] 46#0: *1402 pread() read only 7839 of 10141 from "/var/www/dist/css/main.css" while sending response to client, client: 192.168.59.3, server: boilerplate.app, request: "GET /css/main.css HTTP/1.1", host: "boilerplate.app", referrer: "http://boilerplate.app/model/ktoolcor"
+2016/01/20 10:00:11 [error] 55#0: *25 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/20 10:00:12 [error] 55#0: *27 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/20 10:00:20 [error] 55#0: *26 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/20 10:00:21 [error] 55#0: *27 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/20 10:00:25 [error] 55#0: *27 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app"
+2016/01/20 10:00:26 [error] 55#0: *25 FastCGI sent in stderr: "PHP message: PHP Warning:  Missing argument 1 for Acme\Shop::getShops(), called in /var/www/Acme/PageController.php on line 11 and defined in /var/www/Acme/Shop.php on line 13
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:101
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showShops() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Acme\Shop::getShops() /var/www/Acme/PageController.php:11" while reading response header from upstream, client: 192.168.59.3, server: boilerplate.app, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php5-fpm.sock:", host: "boilerplate.app", referrer: "http://boilerplate.app/"
+2016/01/20 10:45:19 [error] 57#0: *79 FastCGI sent in stderr: "PHP message: PHP Notice:  Array to string conversion in /var/www/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code on line 57
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/dist/index.php:0
+PHP message: PHP   2. Silex\Application->run() /var/www/dist/index.php:97
+PHP message: PHP   3. Silex\Application->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:563
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/silex/silex/src/Silex/Application.php:586
+PHP message: PHP   5. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/http-kernel/HttpKernel.php:62
+PHP message: PHP   6. call_user_func_array() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   7. Acme\PageController->showModel() /var/www/vendor/symfony/http-kernel/HttpKernel.php:139
+PHP message: PHP   8. Twig_Environment->render() /var/www/Acme/PageController.php:32
+PHP message: PHP   9. Twig_Template->render() /var/www/vendor/twig/twig/lib/Twig/Environment.php:347
+PHP message: PHP  10. Twig_Template->display() /var/www/vendor/twig/twig/lib/Twig/Template.php:366
+PHP message: PHP  11. Twig_Template->displayWithErrorHandling() /var/www/vendor/twig/twig/lib/Twig/Template.php:355
+PHP message: PHP  12. __TwigTemplate_b77da65a8ffb7a48534fbc6b4614b437e2936333c5562f6c502b75ff4993b209->doDisplay() /var/www/vendor/twig/twig/lib/Twig/Template.php:381
+PHP message: PHP  13. Twig_Template->display() /var/www/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code:24
+PHP message: PHP  14. Twig_Template->displayWithErrorHandling() /var/www/vendor/twig/twig/lib/Twig/Template.php:355
+PHP message: PHP  15. __TwigTemplate_a50491200d89094e353065ccb5338c506671214fb72f760af865ffac657d59a9->doDisplay() /var/www/vendor/twig/twig/lib/Twig/Template.php:381
+PHP message: PHP  16. Twig_Template->displayBlock() /var/www/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code:31
+PHP mes

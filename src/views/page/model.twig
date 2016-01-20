@@ -8,14 +8,25 @@
             Höhe: <span id="sizeY"></span>cm<br>
             Tiefe: <span id="sizeZ"></span>cm<br>
         </div>
-        <div class="columns medium-5 no-padding modelling">
+        <div class="columns medium-5 modelling">
             <div class="sidebar--head">
                 <h1>{{ model }}</h1>
                 <hr>
                 <div class="modelling--subtitle">Preis</div>
                 <div class="price-tag">100</div>
             </div>
+            {% for attr in modelAttr %}
+                {% if attr.type == 'integer' %}
+                    <label for="{{ attr.name }}">{{ attr.name }}</label>
+                    <input type="range" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}">
+                {% elseif attr.type == 'text' %}
+                    <label for="{{ attr.name }}">{{ attr.name }}</label>
+                    <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
+                {% endif %}
+            {% endfor %}
 
             <a id="save" class="button">Save</a>
         </div>
+
+
 {% endblock %}

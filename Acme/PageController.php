@@ -22,4 +22,13 @@ class PageController
             "models" => $models
         ));
     }
+
+    public function showModel(Request $request, Application $app, $model)
+    {
+        $modelAttr = Model::getModelAttributes($model);
+        return $app['twig']->render('page/model.twig', array(
+            "modelAttr" => $modelAttr,
+            "model" => $model
+        ));
+    }
 }
