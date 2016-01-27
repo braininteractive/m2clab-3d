@@ -26,9 +26,11 @@ class PageController
     public function showModel(Request $request, Application $app, $model)
     {
         $modelAttr = Model::getModelAttributes($model);
+        $modelGroups = Model::getGroups($model);
         return $app['twig']->render('page/model.twig', array(
             "modelAttr" => $modelAttr,
-            "model" => $model
+            "model" => $model,
+            "groups" => $modelGroups
         ));
     }
 }

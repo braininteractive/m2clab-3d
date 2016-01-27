@@ -6,7 +6,7 @@
   </header>
   <div class="row">
     {% for shop in shops %}
-      <div class="subshop columns medium-5" style="float:{{ random(['left','right']) }}; height:{{ random(range(300,400)) }}px; margin-top: {{ random(300) }}px; background: url('{{ shop.image }}') #eef1f8">
+      <div class="subshop columns medium-5" style="float:{{ random(['left','right']) }}; height:{{ random(range(300,400)) }}px; margin-top: {{ random(300) }}px; background-image: url('{{ shop.image }}');">
         <a href="/shop/{{ shop.name }}" class="subshop--link" style="position: absolute; bottom: 20px; left: 20px;">
           <h2>{{ shop.name }}</h2><br>
           <span>Jetzt entdecken!</span>

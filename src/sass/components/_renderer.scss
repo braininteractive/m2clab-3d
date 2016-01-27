@@ -2,4 +2,17 @@
   width: 100%;
   height: calc(100vh - 80px);
   background-image: linear-gradient(0deg, #F7F7F7 0%, #F0F0F0 100%);
+  position: relative;
+  .fa-expand {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+  &.expanded{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+  }
 }

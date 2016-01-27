@@ -9,7 +9,10 @@
   "browser": {
     "dat.gui": "./node_modules/dat.gui/dat.gui.js",
     "jquery": "./node_modules/jquery/dist/jquery.js",
-    "foundation.interchange": "./node_modules/foundation/js/foundation/foundation.interchange.js"
+    "foundation": "./node_modules/foundation-sites/js/foundation.core.js",
+    "foundation.accordion": "./node_modules/foundation-sites/js/foundation.accordion.js",
+    "foundation.util.keyboard": "./node_modules/foundation-sites/js/foundation.util.keyboard.js",
+    "foundation.util.motion": "./node_modules/foundation-sites/js/foundation.util.motion.js"
   },
   "browserify": {
     "transform": [
@@ -22,10 +25,12 @@
         "jquery:jQuery"
       ]
     },
-    "foundation.interchange": {
+    "foundation.accordion": {
       "depends": [
         "jquery:jQuery",
-        "foundation"
+        "foundation",
+        "foundation.util.keyboard",
+        "foundation.util.motion"
       ]
     }
   },

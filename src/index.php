@@ -17,6 +17,7 @@ $env = getenv('APP_ENV') ? : 'prod';
 define('APP_ENV', $env);
 
 
+
 $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/$env.json"));
 
 // use $app['debug'], $app['db_name'], etc...

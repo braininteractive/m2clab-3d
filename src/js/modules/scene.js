@@ -73,17 +73,26 @@ function initGraphics(url) {
 
     camera = new THREE.PerspectiveCamera(60, contentWidth / contentHeight, 1, 100000);
     var cameraTarget = new THREE.Vector3( 0, 0, 0 );
-    camera.position.set(0, 0, 10);
+    camera.position.set(0, 0, 100);
     camera.lookAt(cameraTarget);
 
     controls = new OrbitControls(camera, document.getElementById('renderer'));
+    //controls.noZoom = true;
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
+    controls.noZoom = false;
+    controls.noPan = false;
+    controls.staticMoving = true;
+    controls.dynamicDampingFactor = 0.3;
+    controls.minDistance = 80;
+    controls.zoomSpeed = 0.1;
+
+    console.log(controls);
 
     light.init(scene, camera, controls);
-    //STL-Loader
 
     var loader = new THREE.STLLoader();
-
-    console.log(url);
 
     loader.load('/models/' + url + '.stl', function (geometry) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
@@ -105,16 +114,11 @@ function initGraphics(url) {
         mesh.castShadow = true;
         mesh.receiveShadow = true;
 
-        box = new THREE.Box3().setFromObject( mesh );
-        boxSize = box.size();
-        var sizeX = Math.round(boxSize.x * 100) / 100;
-        var sizeY = Math.round(boxSize.y * 100) / 100;
-        var sizeZ = Math.round(boxSize.z * 100) / 100;
-        $('#sizeX').text(sizeX);
-        $('#sizeY').text(sizeY);
-        $('#sizeZ').text(sizeZ);
 
-        calculate.price(sizeX * sizeY * sizeZ);
+
+        var volume = calculate.size(mesh);
+        calculate.price(volume);
+
         scene.add(mesh);
         gui.init(boxSize, mesh, url, scene);
 
