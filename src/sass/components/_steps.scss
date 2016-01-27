@@ -1,0 +1,36 @@
+.settings {
+  margin-left: -35px;
+  margin-right: -35px;
+  border: 0;
+  .accordion-title {
+    padding: 1.25rem 35px;
+    text-transform: uppercase;
+    color: #474657;
+    font-weight: 600;
+    &:before{
+      font-size: 18px;
+      margin-top: -1rem;
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #fb9987;
+      display: inline-block;
+      color: white;
+      padding: 10px 12px;
+      margin-right: 10px;
+    }
+  }
+  .accordion-item {
+    &:first-child {
+      border-top: 1px;
+    }
+    &:last-child {
+      border-top: 1px;
+    }
+  }
+  .accordion-content{
+    padding: 10px 35px;
+  }
+}
