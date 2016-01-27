@@ -1,5 +1,8 @@
 .sidebar{
-  padding: 35px;
+  padding: 35px 35px 60px;
+  position: relative;
+  height: 100%;
+  overflow: scroll;
   &--head{
     width: 100%;
     h1{

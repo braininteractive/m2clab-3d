@@ -1,5 +1,7 @@
 {% extends('layout/base.twig') %}
 
+{% block classes %}fullheight{% endblock %}
+
 {% block content %}
         <script>
             const model = '{{ model }}';
@@ -28,13 +30,13 @@
                 <div class="price-tag">100</div>
             </div>
 
-            <ul class="accordion" data-accordion>
+            <ul class="accordion settings" data-accordion>
 
                 <!-- ... -->
 
             {% for i, group in groups %}
-                <li class="accordion-item is-active" data-accordion-item>
-                    <a class="accordion-title"><span>{{ i + 1 }}</span> {{ group.collection }}</a>
+                <li class="accordion-item {% if i == 0 %}is-active{% endif %}" data-accordion-item>
+                    <a class="accordion-title"><span class="step">{{ i + 1 }}</span> {{ group.collection }}</a>
                     <div class="accordion-content" data-tab-content>
                         {% for attr in modelAttr if attr.collection == group.collection %}
                             {% if attr.type == 'integer' %}

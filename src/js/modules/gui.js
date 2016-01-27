@@ -55,8 +55,6 @@ module.exports = {
                 controls.enabled = false;
                 SELECTED = intersects[ 0 ].object;
             }
-
-            console.log(intersects);
         }
     },
     dropText: function( event, camera, renderer, mesh, controls ) {
@@ -210,8 +208,8 @@ function buildGUI( mesh, scene) {
 
 function addEmbossing( scene, textValue) {
     var text3d = new THREE.TextGeometry( textValue, {
-        size: 0.1,
-        height: 0.1,
+        size: 1,
+        height: 1,
         curveSegments: 2,
         font: 'Roboto Black'
     });
