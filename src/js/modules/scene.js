@@ -88,8 +88,6 @@ function initGraphics(url) {
     controls.minDistance = 80;
     controls.zoomSpeed = 0.1;
 
-    console.log(controls);
-
     light.init(scene, camera, controls);
 
     var loader = new THREE.STLLoader();

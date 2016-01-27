@@ -15,6 +15,21 @@ var Accordion = require('foundation.accordion');
             $(window).trigger('resize');
         });
 
+        $('input[type=number]').on('change', function(e){
+            var self = $(this);
+            var value = parseInt(self.val());
+            var min = parseInt(self.attr('min'));
+            var max = parseInt(self.attr('max'));
+            if(value < min || value > max){
+                self.css('border', '1px solid red');
+                $('#save').prop('disabled', true);
+
+            }else{
+                self.css('border', '1px solid #cacaca');
+                $('#save').prop('disabled', false);
+            }
+        });
+
 		var elem = new Foundation.Accordion($('[data-accordion]'));
     }
 
