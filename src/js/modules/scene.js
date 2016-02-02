@@ -106,7 +106,18 @@ function initGraphics(url) {
         }
 
         mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(0, 0, 0);
+
+        geometry.computeBoundingBox();
+
+        var center = new THREE.Vector3();
+        center.addVectors( geometry.boundingBox.min, geometry.boundingBox.max );
+        center.multiplyScalar( - 0.5 );
+
+        center.applyMatrix4( mesh.matrixWorld );
+
+
+        mesh.position.set( center.x, center.y, center.z );
+        mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation( -center.x, -center.y, -center.z ) );
         mesh.rotation.set(0, -Math.PI / 2, 0);
         mesh.scale.set(params.width, params.height, params.depth);
         mesh.castShadow = true;

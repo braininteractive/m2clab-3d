@@ -9,7 +9,7 @@ var boxSize;
 var attributes;
 var configs = {};
 var text;
-var SELECTED;
+var SELECTED, TEXTOBJECT;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(),
     offset = new THREE.Vector3();
@@ -70,15 +70,7 @@ module.exports = {
 };
 
 function scale(mesh) {
-    var box = new THREE.Box3().setFromObject( mesh );
-    boxSize = box.size();
-    var sizeX = Math.round(boxSize.x * 100) / 100;
-    var sizeY = Math.round(boxSize.y * 100) / 100;
-    var sizeZ = Math.round(boxSize.z * 100) / 100;
-    $('#sizeX').text(sizeX);
-    $('#sizeY').text(sizeY);
-    $('#sizeZ').text(sizeZ);
-
+    calculate.size(mesh);
     calculate.price(sizeX * sizeY * sizeZ);
 }
 
@@ -132,83 +124,25 @@ function buildGUI( mesh, scene) {
                 break;
             case 'fontSize':
                 $(input).on('change', function(){
+                    var textValue = $('#text').val();
                     var fontSize = $(this).val();
-                    scene.remove(text);
-                    addEmbossing(scene, fontSize);
+                    addEmbossing(scene, textValue, fontSize);
+                });
+                break;
+            case 'fontHeight':
+                $(input).on('change', function(){
+                    var textValue = $('#text').val();
+                    var fontSize = $(this).val();
+                    addEmbossing(scene, textValue, fontSize);
                 });
                 break;
         }
     });
-    //$.each( data.attributes, function( attr, defs ) {
-    //    params[attr] = defs.initial;
-    //    switch(defs.type){
-    //        case 'integer':
-    //            configs[attr] = gui.add(params, attr, defs.range.min, defs.range.max);
-    //            break;
-    //        case 'color':
-    //            configs[attr] = gui.addColor(params, attr);
-    //            break;
-    //        case 'text':
-    //            configs[attr] = gui.add(params, attr);
-    //            break;
-    //        case 'checkbox':
-    //            configs[attr] = gui.add(params, attr);
-    //            break;
-    //    }
-    //});
-    //
-    //
-    //$.each( configs, function( key, value ) {
-    //    switch (key){
-    //        case 'width':
-    //            value.onChange( function( scaleValue){
-    //                mesh.scale.set(scaleValue, params.height, params.depth);
-    //                scale(mesh);
-    //            });
-    //            break;
-    //        case 'height':
-    //            value.onChange( function( scaleValue){
-    //                mesh.scale.set(params.width, scaleValue, params.depth);
-    //                scale(mesh);
-    //            });
-    //            break;
-    //        case 'depth':
-    //            value.onChange( function( scaleValue){
-    //                mesh.scale.set(params.width, params.height, scaleValue);
-    //                scale(mesh);
-    //            });
-    //            break;
-    //        case 'color':
-    //            value.onChange( function( colorValue){
-    //                var colorObject = new THREE.Color( colorValue );
-    //                mesh.material.color = colorObject;
-    //            });
-    //            break;
-    //        case 'size':
-    //            value.onChange( function( scaleValue){
-    //                mesh.scale.set(scaleValue, scaleValue, scaleValue);
-    //                scale(mesh);
-    //            });
-    //            break;
-    //        case 'text':
-    //            value.onFinishChange( function( textValue ){
-    //                mesh.remove(text);
-    //                addEmbossing(scene, textValue);
-    //            });
-    //            break;
-    //        case 'fontSize':
-    //            value.onFinishChange( function( fontSize ){
-    //                scene.remove(text);
-    //                addEmbossing(scene, fontSize);
-    //            });
-    //            break;
-    //    }
-    //});
 }
 
-function addEmbossing( scene, textValue) {
+function addEmbossing( scene, textValue, fontSize = 20) {
     var text3d = new THREE.TextGeometry( textValue, {
-        size: 1,
+        size: fontSize,
         height: 1,
         curveSegments: 2,
         font: 'Roboto Black'
@@ -222,14 +156,27 @@ function addEmbossing( scene, textValue) {
         specular: 0x111111,
         shininess: 200
     });
-    text = new THREE.Mesh( text3d, textMaterial );
-    text.position.x = centerOffset;
-    text.position.y = 0;
-    text.position.z = -5;
-    // text.position.z = Math.tan( Date.now() * 2 ) * 20;
-    text.rotation.x = 0;
-    text.rotation.y = Math.PI * 2;
+
+    if (text){
+        var posX = text.position.x;
+        var posY = text.position.y;
+        var posZ = text.position.z;
+        scene.remove(text);
+        text = new THREE.Mesh( text3d, textMaterial );
+
+        text.position.x = posX;
+        text.position.y = posY;
+        text.position.z = posZ;
+
+    } else {
+        text = new THREE.Mesh( text3d, textMaterial );
+        text.position.x = centerOffset;
+        text.position.y = 0;
+        text.position.z = -5;
+
+        SELECTED = text;
+    }
+
     scene.add( text );
-    SELECTED = text;
     objects.push( text );
 }

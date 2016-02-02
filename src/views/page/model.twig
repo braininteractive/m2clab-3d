@@ -18,9 +18,9 @@
             <div id="renderer">
                 <i class="fa fa-expand fa-2x"></i>
             </div>
-            Breite: <span id="sizeX"></span>cm<br>
-            Höhe: <span id="sizeY"></span>cm<br>
-            Tiefe: <span id="sizeZ"></span>cm<br>
+            {#Breite: <span id="sizeX"></span>cm<br>#}
+            {#Höhe: <span id="sizeY"></span>cm<br>#}
+            {#Tiefe: <span id="sizeZ"></span>cm<br>#}
         </div>
         <div class="columns medium-5 modelling sidebar">
             <div class="sidebar--head">
@@ -39,12 +39,18 @@
                     <a class="accordion-title"><span class="step">{{ i + 1 }}</span> {{ group.collection }}</a>
                     <div class="accordion-content" data-tab-content>
                         {% for attr in modelAttr if attr.collection == group.collection %}
-                            {% if attr.type == 'integer' %}
-                                <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
-                                <input type="number" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}">
-                            {% elseif attr.type == 'text' %}
-                                <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
-                                <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
+                            {% if attr.collection == 'Größe' %}
+                                <div class="size">
+                            {% endif %}
+                                {% if attr.type == 'integer' %}
+                                    <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
+                                    <input type="number" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}">
+                                {% elseif attr.type == 'text' %}
+                                    <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
+                                    <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
+                                {% endif %}
+                            {% if attr.collection == 'Größe' %}
+                                </div>
                             {% endif %}
                         {% endfor %}
                     </div>
