@@ -17,13 +17,13 @@ class Shop
 
     static function getShopModels($shop)
     {
-        return R::getAll('SELECT name FROM models WHERE shop_id = (SELECT id FROM shops WHERE name = ?)', [$shop]);
+        return R::getAll('SELECT name FROM models WHERE shop_id = (SELECT id FROM shops WHERE name = ?) AND Coalesce(deleted, 0) = 0', [$shop]);
     }
 
 
-    static function exists($shop)
+    static function existsShop($shop)
     {
-        return R::findOne('shops', 'name = ?', [$shop->name]) !== null;
+        return R::findOne('shops', 'name = ?', [$shop]);
     }
 
 }

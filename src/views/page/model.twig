@@ -4,7 +4,7 @@
 
 {% block content %}
         <script>
-            const model = '{{ model }}';
+            const model = '{{ model.url }}';
             var params = {
                 height: 0.5,
                 width: 0.5,
@@ -24,7 +24,7 @@
         </div>
         <div class="columns medium-5 modelling sidebar">
             <div class="sidebar--head">
-                <h1>{{ model }}</h1>
+                <h1>{{ model.name }}</h1>
                 <hr>
                 <div class="modelling--subtitle">Preis</div>
                 <div class="price-tag">100</div>

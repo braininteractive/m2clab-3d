@@ -70,34 +70,38 @@ module.exports = {
 };
 
 function scale(mesh) {
-    calculate.size(mesh);
-    calculate.price(sizeX * sizeY * sizeZ);
+    var size = calculate.size(mesh);
+    calculate.price(size);
 }
 
 function buildGUI( mesh, scene) {
+    var box = new THREE.Box3().setFromObject( mesh );
+    var boxSize = box.size();
+
+    var sizeX = boxSize.x*2 ;
+    var sizeY = boxSize.y*2 ;
+    var sizeZ = boxSize.z*2 ;
+
     $.each($('input'), function(index, input){
         switch ($(input).attr('id')){
             case 'width':
                 $(input).on('change', function(){
                     var scaleValue = parseFloat($(this).val());
-                    params.width = scaleValue;
-                    mesh.scale.set(scaleValue, params.height, params.depth);
+                    mesh.scale.z = (scaleValue/sizeX)/2;
                     scale(mesh);
                 });
                 break;
             case 'height':
                 $(input).on('change', function(){
-                    var scaleValue = parseFloat($(this).val());
-                    params.height = scaleValue;
-                    mesh.scale.set(params.width, scaleValue, params.depth);
+                    var scaleValue = $(this).val();
+                    mesh.scale.y = (scaleValue/sizeY)/2;
                     scale(mesh);
                 });
                 break;
             case 'depth':
                 $(input).on('change', function(){
                     var scaleValue = parseFloat($(this).val());
-                    params.depth = scaleValue;
-                    mesh.scale.set(params.width, params.height, scaleValue);
+                    mesh.scale.x = (scaleValue/sizeZ)/2;
                     scale(mesh);
                 });
                 break;

@@ -92,7 +92,7 @@ function initGraphics(url) {
 
     var loader = new THREE.STLLoader();
 
-    loader.load('/models/' + url + '.stl', function (geometry) {
+    loader.load(url , function (geometry) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
         var material;
         if (geometry.hasColors) {
@@ -130,6 +130,10 @@ function initGraphics(url) {
 
         scene.add(mesh);
         gui.init(boxSize, mesh, url, scene);
+
+        $('#save').on('click', function(){
+            calculate.manufacturability(mesh);
+        });
 
     });
 }

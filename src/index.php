@@ -6,6 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Silex\Provider\FormServiceProvider;
 use RedBean_Facade as R;
 
 // use Acme\MyClass;
@@ -28,6 +29,16 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), [
    'http_cache.cache_dir' => __DIR__ . '/http_cache/'
 ]);
 
+$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+    'locale' => 'de',
+    'translation.class_path' => __DIR__ . '/../locales',
+    'translator.messages' => array()
+));
+
+$app->register(new Silex\Provider\ValidatorServiceProvider());
+$app->register(new FormServiceProvider());
+
+
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/logging.log',
 ));
@@ -42,7 +53,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     )
 ));
 
+
 $app['twig']->addExtension(new Twig_Extension_Debug());
+
 
 $addCacheMiddleware = function (Request $request, Response $response, Application $app) {
     return $response->setCache(['s_maxage' => 3600]);
@@ -66,6 +79,12 @@ $app->get('/', 'Acme\\PageController::showShops');
 $app->get('/shop/{shop}/{model}', 'Acme\\PageController::showModel');
 
 $app->get('/shop/{shop}', 'Acme\\PageController::showShopModels');
+
+$app->get('/admin/{shop}', 'Acme\\PageController::showAdmin')->method('GET|POST');
+
+//$app->get('/admin/{shop}/add', 'Acme\\PageController::addModel')->method('GET|POST');
+
+$app->get('/admin/delete/{shop}/{model}', 'Acme\\PageController::deleteModel')->method('GET|POST');
 
 // -------- ERROR HANDLING -------
 

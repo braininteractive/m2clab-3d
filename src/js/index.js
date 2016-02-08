@@ -1,14 +1,15 @@
-var scene = require('./modules/scene');
 var $ = require('jquery');
 const fs = require('fs');
 var Accordion = require('foundation.accordion');
 
 ( function() {
     if( $('#renderer').length > 0){
+        var scene = require('./modules/scene');
+
         scene.init(model);
-        $('#save').on('click', function(){
-            scene.saveSTL( 'modified' );
-        });
+        //$('#save').on('click', function(){
+        //    scene.saveSTL( 'modified' );
+        //});
 
         $('.fa-expand').on('click', function(){
             $('#renderer').toggleClass('expanded');
@@ -32,6 +33,53 @@ var Accordion = require('foundation.accordion');
 
 		var elem = new Foundation.Accordion($('[data-accordion]'));
     }
+
+    $('[data-delete]').on('click', function(e){
+        e.preventDefault();
+        var self = $(this);
+        if (confirm("Really delete this model?")) {
+            $.ajax({
+                    url: self.attr('data-url'),
+                    type: "POST",//type of posting the data
+                    data: self.attr('data-delete'),
+                success: function (data){
+                    var table = $(data).find('table');
+                    $('table').replaceWith($(table));
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    //what to do in error
+                },
+                timeout : 15000//timeout of the ajax call
+            });
+        }
+
+    });
+
+    $( '.inputfile' ).each( function()
+    {
+        var $input	 = $( this ),
+            $label	 = $input.next( 'label' ),
+            labelVal = $label.html();
+
+        $input.on( 'change', function( e )
+        {
+            var fileName = '';
+
+            if( this.files && this.files.length > 1 )
+                fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+            else if( e.target.value )
+                fileName = e.target.value.split( '\\' ).pop();
+
+            if( fileName ) {
+                $label.find('span').html(fileName);
+                $label.addClass('inputfile__chosen');
+            }
+            else {
+                $label.html(labelVal);
+                $label.addClass('inputfile__chosen');
+            }
+        });
+    });
 
 
 })();

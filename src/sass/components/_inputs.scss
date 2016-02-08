@@ -160,3 +160,46 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
 }
+
+
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #333;
+  background-color: #bdc3c7;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #7f8c8d;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  &--submit{
+    width: 100%;
+    display: inline-block;
+    color: white;
+    background-color: #e74c3c;
+    border: 0;
+    padding: 30px;
+    &:hover{
+      background-color: #c0392b;
+    }
+  }
+}
+
+.inputfile + label.inputfile__chosen{
+  background-color: #2ecc71 !important;
+}

@@ -6,6 +6,7 @@
 /* Foundation */
 @import "foundation";
 @include foundation-everything;
+@include table();
 
 /* Base Definitions */
 @import "font-awesome";
@@ -43,3 +44,4 @@
 @import "components/search";
 @import "components/inputs";
 @import "components/steps";
+@import "components/table";

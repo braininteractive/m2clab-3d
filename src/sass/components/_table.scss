@@ -1,0 +1,23 @@
+table{
+  width: 100%;
+  th{
+    text-align: left;
+    padding: 20px 0;
+  }
+  td{
+    ul{
+      list-style: none;
+    }
+  }
+  td,th{
+    padding: 10px;
+  }
+  tr{
+    &:nth-child(odd){
+      background: #eee;
+    }
+    &:first-child{
+      background: #ddd;
+    }
+  }
+}
