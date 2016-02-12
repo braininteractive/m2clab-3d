@@ -48,6 +48,8 @@
                                 {% elseif attr.type == 'text' %}
                                     <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
                                     <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
+                                {% elseif attr.type == 'form' %}
+                                    <i class="fa fa-{{ attr.name }} fa-2x" data-form="{{ attr.name }}"></i>
                                 {% endif %}
                             {% if attr.collection == 'Größe' %}
                                 </div>

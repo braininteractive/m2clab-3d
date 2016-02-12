@@ -14,6 +14,7 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(),
     offset = new THREE.Vector3();
 var objects = [];
+var embossing;
 
 module.exports = {
     init: function(box, mesh, url, scene){
@@ -82,6 +83,11 @@ function buildGUI( mesh, scene) {
     var sizeY = boxSize.y*2 ;
     var sizeZ = boxSize.z*2 ;
 
+    $('[data-form]').on('click', function(){
+        var type = $(this).attr('data-form');
+        addForm(type, scene);
+    });
+
     $.each($('input'), function(index, input){
         switch ($(input).attr('id')){
             case 'width':
@@ -121,59 +127,96 @@ function buildGUI( mesh, scene) {
                 break;
             case 'text':
                 $(input).on('change', function(){
-                    var textValue = $(this).val();
-                    mesh.remove(text);
-                    addEmbossing(scene, textValue);
+                    addForm('text', scene);
                 });
                 break;
             case 'fontSize':
                 $(input).on('change', function(){
-                    var textValue = $('#text').val();
-                    var fontSize = $(this).val();
-                    addEmbossing(scene, textValue, fontSize);
+                    addForm('text', scene);
                 });
                 break;
             case 'fontHeight':
                 $(input).on('change', function(){
-                    var textValue = $('#text').val();
-                    var fontSize = $(this).val();
-                    addEmbossing(scene, textValue, fontSize);
+                    addForm('text', scene);
                 });
                 break;
         }
     });
 }
 
-function addEmbossing( scene, textValue, fontSize = 20) {
-    var text3d = new THREE.TextGeometry( textValue, {
-        size: fontSize,
-        height: 1,
-        curveSegments: 2,
-        font: 'Roboto Black'
-    });
-    text3d.computeBoundingBox();
 
-    var centerOffset = -0.5 * ( text3d.boundingBox.max.x - text3d.boundingBox.min.x );
 
-    var textMaterial = new THREE.MeshPhongMaterial({
+function addForm(type, scene) {
+    var form;
+
+    if (type == 'text'){
+        embossing = true;
+        form = new THREE.TextGeometry( $('#text').val(), {
+            size: $('#fontSize').val(),
+            height: 1,
+            curveSegments: 2,
+            font: 'Roboto Black'
+        });
+    }
+    else if (type == 'cube'){
+        form = new THREE.CubeGeometry( 2, 2, 2 );
+    }
+    else if (type == 'circle'){
+        form = new THREE.SphereGeometry(2, 32, 32);
+    }
+    else if (type == 'star'){
+        var starPoints = [];
+
+        starPoints.push( new THREE.Vector2 (  0,  5 ) );
+        starPoints.push( new THREE.Vector2 (  1,  1 ) );
+        starPoints.push( new THREE.Vector2 (  4,  1 ) );
+        starPoints.push( new THREE.Vector2 (  2, -1 ) );
+        starPoints.push( new THREE.Vector2 (  3, -5 ) );
+        starPoints.push( new THREE.Vector2 (  0, -2 ) );
+        starPoints.push( new THREE.Vector2 ( -3, -5 ) );
+        starPoints.push( new THREE.Vector2 ( -2, -1 ) );
+        starPoints.push( new THREE.Vector2 ( -4,  1 ) );
+        starPoints.push( new THREE.Vector2 ( -1,  1 ) );
+
+        var starShape = new THREE.Shape( starPoints );
+
+        var extrusionSettings = {
+            amount: 2,
+            size: 1,
+            height: 1,
+            curveSegments: 3,
+            bevelThickness: 1,
+            bevelSize: 2,
+            bevelEnabled: false,
+            material: 0,
+            extrudeMaterial: 1
+        };
+
+        form = new THREE.ExtrudeGeometry( starShape, extrusionSettings );
+    }
+
+    form.computeBoundingBox();
+    var centerOffset = -0.5 * ( form.boundingBox.max.x - form.boundingBox.min.x );
+
+    var Material = new THREE.MeshPhongMaterial({
         color: 0x787878,
         specular: 0x111111,
         shininess: 200
     });
 
-    if (text){
+    if (embossing){
         var posX = text.position.x;
         var posY = text.position.y;
         var posZ = text.position.z;
         scene.remove(text);
-        text = new THREE.Mesh( text3d, textMaterial );
+        text = new THREE.Mesh( form, Material );
 
         text.position.x = posX;
         text.position.y = posY;
         text.position.z = posZ;
-
+    
     } else {
-        text = new THREE.Mesh( text3d, textMaterial );
+        text = new THREE.Mesh( form, Material );
         text.position.x = centerOffset;
         text.position.y = 0;
         text.position.z = -5;
