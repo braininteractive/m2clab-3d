@@ -42,7 +42,7 @@ module.exports = {
             }
         }
     },
-    selectText: function selectText(event, camera, renderer, mesh, controls) {
+    selectText: function selectText(event, camera, renderer, mesh, controls,scene) {
         if (text !== undefined && !SELECTED) {
 
             event.preventDefault();
@@ -65,6 +65,25 @@ module.exports = {
 
                 SELECTED = null;
             }
+            $('.embedded--edit').on('click', '.embedded--move', function(){
+                MOVE = true;
+                $(".embedded--edit").hide();
+                this.moveText();
+
+            });
+            $('.embedded--edit').on('click', '.embedded--delete', function(){
+                $(".embedded--edit").hide();
+                scene.remove(SELECTED);
+                controls.enabled = true;
+                SELECTED = null;
+            });
+            $('.embedded--edit').on('click', '.embedded--scale', function(){
+                $(".embedded--scale--input").show();
+                $(".embedded--scale--input").on('change', function(){
+                    var scaleValue = $(".embedded--scale--input").val();
+                    SELECTED.scale.set(scaleValue, scaleValue, scaleValue);
+                });
+            });
         } else {}
     },
     dropText: function dropText(event, camera, renderer, mesh, controls) {
@@ -234,11 +253,5 @@ function addForm(type, scene) {
     text.name = text.uuid;
     scene.add(text);
     objects.push(text);
-    //
-    //$('.embedding--list').on('click', 'li', function(){
-    //    var self = $(this);
-    //    var obj_id = self.attr('data-form-id');
-    //    scene.remove(objects[obj_id - 1]);
-    //    self.remove();
-    //});
+
 }

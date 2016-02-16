@@ -168,7 +168,7 @@ document.getElementById('renderer').onmousemove = function(event) {
 };
 
 document.getElementById('renderer').onmousedown = function(event) {
-    gui.selectText(event, camera, renderer, mesh, controls);
+    gui.selectText(event, camera, renderer, mesh, controls, scene);
 };
 
 document.getElementById('renderer').onmouseup = function(event) {

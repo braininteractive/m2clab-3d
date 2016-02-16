@@ -11,7 +11,7 @@ var Accordion = require('foundation.accordion');
         //    scene.saveSTL( 'modified' );
         //});
 
-        $('.fa-expand').on('click', function(){
+        $('.renderer--expand').on('click', function(){
             $('#renderer').toggleClass('expanded');
             $(window).trigger('resize');
         });
