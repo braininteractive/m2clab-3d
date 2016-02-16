@@ -16,11 +16,14 @@
         </script>
         <div class="columns medium-7 no-padding">
             <div id="renderer">
-                <i class="fa fa-expand fa-2x"></i>
+                <i class="fa fa-expand fa-2x renderer--expand"></i>
+                <div class="embedded--edit">
+                    <i class="fa fa-arrows fa-2x"></i>
+                    <i class="fa fa-trash fa-2x"></i>
+                    <i class="fa fa-expand fa-2x"></i>
+                </div>
             </div>
-            {#Breite: <span id="sizeX"></span>cm<br>#}
-            {#Höhe: <span id="sizeY"></span>cm<br>#}
-            {#Tiefe: <span id="sizeZ"></span>cm<br>#}
+            <ul class="embedding--list" style="position: absolute; bottom:0;"></ul>
         </div>
         <div class="columns medium-5 modelling sidebar">
             <div class="sidebar--head">
@@ -31,8 +34,6 @@
             </div>
 
             <ul class="accordion settings" data-accordion>
-
-                <!-- ... -->
 
             {% for i, group in groups %}
                 <li class="accordion-item {% if i == 0 %}is-active{% endif %}" data-accordion-item>

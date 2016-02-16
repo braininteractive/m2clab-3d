@@ -122,6 +122,7 @@ function initGraphics(url) {
         mesh.scale.set(params.width, params.height, params.depth);
         mesh.castShadow = true;
         mesh.receiveShadow = true;
+        mesh.name = 'model';
 
 
 
