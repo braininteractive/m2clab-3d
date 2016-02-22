@@ -43,9 +43,8 @@ module.exports = {
         }
     },
     selectText: function selectText(event, camera, renderer, mesh, controls,scene) {
-        if (text !== undefined && !SELECTED) {
+        if (text !== undefined) {
 
-            event.preventDefault();
 
             mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
@@ -58,31 +57,41 @@ module.exports = {
                 controls.enabled = false;
                 SELECTED = intersects[0].object;
                 SELECTED.material.color.set(16711680);
-            } else if (SELECTED) {
+            }
+
+            if (!intersects.length && SELECTED && $('.embedded--edit:hover').length === 0) {
+
                 $(".embedded--edit").hide();
+                $(".embedded--scale--input").hide();
                 controls.enabled = true;
                 SELECTED.material.color.set(7895160);
 
                 SELECTED = null;
             }
+
             $('.embedded--edit').on('click', '.embedded--move', function(){
                 MOVE = true;
                 $(".embedded--edit").hide();
-                this.moveText();
+                $(".embedded--scale--input").hide();
+                moveText();
 
             });
             $('.embedded--edit').on('click', '.embedded--delete', function(){
                 $(".embedded--edit").hide();
+                $(".embedded--scale--input").hide();
                 scene.remove(SELECTED);
                 controls.enabled = true;
+                objects = $.grep(objects, function(e){
+                    return e.uuid != SELECTED.uuid;
+                });
                 SELECTED = null;
             });
             $('.embedded--edit').on('click', '.embedded--scale', function(){
-                $(".embedded--scale--input").show();
-                $(".embedded--scale--input").on('change', function(){
-                    var scaleValue = $(".embedded--scale--input").val();
-                    SELECTED.scale.set(scaleValue, scaleValue, scaleValue);
-                });
+                $(".embedded--scale--input").toggle();
+            });
+            $(".embedded--scale--input").on('change', function(){
+                var scaleValue = $(".embedded--scale--input").val();
+                SELECTED.scale.set(scaleValue, scaleValue, scaleValue);
             });
         } else {}
     },
