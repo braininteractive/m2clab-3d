@@ -1,20 +1,24 @@
 var $ = require('jquery');
 const fs = require('fs');
 var Accordion = require('foundation.accordion');
+var List = require('list.js');
 
 ( function() {
     if( $('#renderer').length > 0){
         var scene = require('./modules/scene');
 
         scene.init(model);
-        //$('#save').on('click', function(){
-        //    scene.saveSTL( 'modified' );
-        //});
+        $('#save').on('click', function(){
+            scene.saveSTL( 'modified' );
+        });
 
         $('.renderer--expand').on('click', function(){
             $('#renderer').toggleClass('expanded');
             $(window).trigger('resize');
         });
+
+
+
 
         $('input[type=number]').on('change', function(e){
             var self = $(this);
@@ -33,6 +37,13 @@ var Accordion = require('foundation.accordion');
 
 		var elem = new Foundation.Accordion($('[data-accordion]'));
     }
+
+    var options = {
+        valueNames: ['model--name']
+    };
+
+    var modelList = new List('models', options);
+    console.log(modelList);
 
     $('[data-delete]').on('click', function(e){
         e.preventDefault();

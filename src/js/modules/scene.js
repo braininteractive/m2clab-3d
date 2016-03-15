@@ -46,10 +46,10 @@ module.exports = {
         requestAnimationFrame(render);
     },
     saveSTL: function( name ){
-        var exporter = new THREE.STLExporter();
+        var exporter = new THREE.STLBinaryExporter();
         var stlString = exporter.parse( scene );
         var blob = new Blob([stlString], {
-            type: 'text/plain'
+            type: 'application/octet-binary'
         });
         Filesaver.saveAs(blob, name + '.stl');
     }
@@ -132,9 +132,9 @@ function initGraphics(url) {
         scene.add(mesh);
         gui.init(boxSize, mesh, url, scene);
 
-        $('#save').on('click', function(){
-            calculate.manufacturability(mesh);
-        });
+        //$('#save').on('click', function(){
+        //    calculate.manufacturability(mesh);
+        //});
 
     });
 }

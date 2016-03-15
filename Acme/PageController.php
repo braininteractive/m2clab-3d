@@ -47,12 +47,10 @@ class PageController
             $models_attr[$model['name']] = Model::getModelAttributes($model['name']);
         }
 
-        $model = new Model();
+        $model = new Model(rand(1, 99999));
         $form = $model->createForm($app);
 
         $form->handleRequest($request);
-
-
 
         if ($form->isValid()) {
             $dir = '/models/' . $shop;
@@ -61,10 +59,12 @@ class PageController
             $filename = rand(1, 99999).'.'.$extension;
             $file->move('.' . $dir, $filename);
 
-            $config = $form['config']->getData();
-            $contents = file_get_contents($config->getPathname());
-
-            $model->store($dir . '/' . $filename, $contents, $shop);
+            $id = $model->store($dir . '/' . $filename, $shop);
+            $configForm = $model->createConfigForm($app);
+            return $app['twig']->render('page/config.twig', array(
+                "model" =>  Model::modelExists($id),
+                "form" => $configForm->createView()
+            ));
         }
 
         return $app['twig']->render('page/admin.twig', array(
@@ -77,6 +77,21 @@ class PageController
     public function deleteModel(Request $request, Application $app, $shop, $model){
         Model::deleteModel($model);
         return $this->showAdmin($request, $app, $shop);
+    }
+
+    public function showModelConfig(Request $request, Application $app, $model)
+    {
+        $mdel = new Model($model);
+        $form = $mdel->createConfigForm($app);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+        }
+
+        return $app['twig']->render('page/config.twig', array(
+            "model" => Model::modelExists($model),
+            "form" => $form->createView()
+        ));
     }
 
 

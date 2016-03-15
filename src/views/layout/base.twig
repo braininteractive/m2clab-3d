@@ -3,12 +3,14 @@
 <head>
     <title>ES6 Test</title>
     <link rel="stylesheet" href="/css/main.css" />
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
 <div class="container {% block classes %}{% endblock %}">
     {% block content %}
     {% endblock %}
+    {% include "components/footer.twig" %}
 </div>
 
     <script type="text/javascript" src="/js/bundle.js"></script>

@@ -1,0 +1,85 @@
+{% extends('layout/base.twig') %}
+
+{% block classes %}fullheight{% endblock %}
+
+{% block content %}
+    <script>
+        const model = '{{ model.url }}';
+        var params = {
+            height: 0.5,
+            width: 0.5,
+            depth: 0.5,
+            color: '#222222',
+            positionY: -0.25,
+            text: 'Test'
+        };
+    </script>
+    <div class="columns medium-7 no-padding">
+        <div id="renderer">
+            <i class="fa fa-expand fa-2x renderer--expand"></i>
+            <div class="embedded--edit">
+                <span class="embedded--option embedded--move"><i class="fa fa-arrows fa-2x"></i></span>
+                <span class="embedded--option embedded--delete"><i class="fa fa-trash fa-2x"></i></span>
+                    <span class="embedded--option embedded--scale">
+                        <i class="fa fa-expand fa-2x "></i>
+                        <input type="range" class="embedded--scale--input" max="2" min="0.1" step="0.1">
+                    </span>
+
+            </div>
+        </div>
+        <ul class="embedding--list" style="position: absolute; bottom:0;"></ul>
+    </div>
+    {{ form_start(form) }}
+    <div class="columns medium-5 modelling sidebar">
+        <div class="sidebar--head">
+            <label for="config_title">Titel</label>
+            {{ form_widget(form.title, {'attr': {'placeholder':'Titel'} }) }}
+            <hr>
+            <div class="modelling--subtitle">Preis</div>
+            <div class="price-tag">100</div>
+        </div>
+
+        <ul class="accordion settings" data-accordion>
+            <li class="accordion-item is-active" data-accordion-item>
+                <a class="accordion-title">Größe</a>
+                <div class="accordion-content" data-tab-content>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_minWidth">minWidth</label>
+                        {{ form_widget(form.minWidth, {'attr': {} }) }}
+                    </div>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_maxWidth">maxWidth</label>
+                        {{ form_widget(form.maxWidth, {'attr': {} }) }}
+                    </div>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_minHeight">minHeight</label>
+                        {{ form_widget(form.minHeight, {'attr': {} }) }}
+                    </div>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_maxHeight">maxHeight</label>
+                        {{ form_widget(form.maxHeight, {'attr': {} }) }}
+                    </div>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_minDepth">minDepth</label>
+                        {{ form_widget(form.minDepth, {'attr': {} }) }}
+                    </div>
+                    <div class="size__config">
+                        <label class="modelling--subtitle" for="config_maxDepth">maxWidth</label>
+                        {{ form_widget(form.maxDepth, {'attr': {} }) }}
+                    </div>
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">Formen</a>
+                <div class="accordion-content" data-tab-content>
+                    {{ form_widget(form.forms, {'attr': {} }) }}
+                </div>
+            </li>
+        </ul>
+
+        <input type="submit" class="button" value="Save">
+    </div>
+    {{ form_end(form) }}
+
+
+{% endblock %}

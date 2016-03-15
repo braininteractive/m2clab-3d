@@ -1,14 +1,15 @@
+var THREE = require('three.js');
 /**
  * @author kovacsv / http://kovacsv.hu/
  * @author mrdoob / http://mrdoob.com/
+ * @author mudcube / http://mudcu.be/
  */
-var THREE = require('three.js');
 
-THREE.STLExporter = function () {};
+THREE.STLBinaryExporter = function () {};
 
-THREE.STLExporter.prototype = {
+THREE.STLBinaryExporter.prototype = {
 
-    constructor: THREE.STLExporter,
+    constructor: THREE.STLBinaryExporter,
 
     parse: ( function () {
 
@@ -17,59 +18,65 @@ THREE.STLExporter.prototype = {
 
         return function parse( scene ) {
 
-            var output = '';
+            var triangles = 0;
+            scene.traverse( function ( object ) {
+                if ( ! ( object instanceof THREE.Mesh ) ) return;
+                triangles += object.geometry.faces.length;
 
-            output += 'solid exported\n';
+            } );
+
+            var offset = 80; // skip header
+            var bufferLength = triangles * 2 + triangles * 3 * 4 * 4 + 80 + 4;
+            var arrayBuffer = new ArrayBuffer( bufferLength );
+            var output = new DataView( arrayBuffer );
+            output.setUint32( offset, triangles, true ); offset += 4;
 
             scene.traverse( function ( object ) {
 
-                if ( object instanceof THREE.Mesh ) {
-                    console.log(object.geometry);
-                    if ( object.geometry instanceof THREE.BufferGeometry){
-                        var geometry = new THREE.Geometry().fromBufferGeometry( object.geometry );
-                    } else {
-                        var geometry = object.geometry;
-                    }
+                if ( ! ( object instanceof THREE.Mesh ) ) return;
 
-                    var matrixWorld = object.matrixWorld;
-                    if ( geometry instanceof THREE.Geometry ) {
+                var geometry = object.geometry;
+                if ( geometry instanceof THREE.BufferGeometry ) {
 
-                        var vertices = geometry.vertices;
-                        var faces = geometry.faces;
-                        normalMatrixWorld.getNormalMatrix( matrixWorld );
+                    geometry = new THREE.Geometry().fromBufferGeometry( geometry );
 
-                        for ( var i = 0, l = faces.length; i < l; i ++ ) {
+                }
 
-                            var face = faces[ i ];
+                if ( ! ( geometry instanceof THREE.Geometry ) ) return;
 
-                            vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+                var matrixWorld = object.matrixWorld;
 
-                            output += '\tfacet normal ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
-                            output += '\t\touter loop\n';
+                var vertices = geometry.vertices;
+                var faces = geometry.faces;
 
-                            var indices = [ face.a, face.b, face.c ];
+                normalMatrixWorld.getNormalMatrix( matrixWorld );
 
-                            for ( var j = 0; j < 3; j ++ ) {
+                for ( var i = 0, l = faces.length; i < l; i ++ ) {
 
-                                vector.copy( vertices[ indices[ j ] ] ).applyMatrix4( matrixWorld );
+                    var face = faces[ i ];
 
-                                output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+                    vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+                    output.setFloat32( offset, vector.x, true ); offset += 4; // normal
+                    output.setFloat32( offset, vector.y, true ); offset += 4;
+                    output.setFloat32( offset, vector.z, true ); offset += 4;
 
-                            }
+                    var indices = [ face.a, face.b, face.c ];
 
-                            output += '\t\tendloop\n';
-                            output += '\tendfacet\n';
+                    for ( var j = 0; j < 3; j ++ ) {
 
-                        }
+                        vector.copy( vertices[ indices[ j ] ] ).applyMatrix4( matrixWorld );
+
+                        output.setFloat32( offset, vector.x, true ); offset += 4; // vertices
+                        output.setFloat32( offset, vector.y, true ); offset += 4;
+                        output.setFloat32( offset, vector.z, true ); offset += 4;
 
                     }
+
+                    output.setUint16( offset, 0, true ); offset += 2; // attribute byte count
 
                 }
 
             } );
-
-            output += 'endsolid exported\n';
-
             return output;
 
         };

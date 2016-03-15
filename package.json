@@ -12,7 +12,8 @@
     "foundation": "./node_modules/foundation-sites/js/foundation.core.js",
     "foundation.accordion": "./node_modules/foundation-sites/js/foundation.accordion.js",
     "foundation.util.keyboard": "./node_modules/foundation-sites/js/foundation.util.keyboard.js",
-    "foundation.util.motion": "./node_modules/foundation-sites/js/foundation.util.motion.js"
+    "foundation.util.motion": "./node_modules/foundation-sites/js/foundation.util.motion.js",
+    "list.js": "./node_modules/list.js/index.js"
   },
   "browserify": {
     "transform": [
@@ -79,6 +80,7 @@
     "foundation-sites": "^6.1.1",
     "fs": "0.0.2",
     "jquery": "^2.1.4",
+    "list.js": "^1.2.0",
     "swiper": "^3.0.7",
     "three-orbit-controls": "^71.0.0",
     "three.js": "^0.72.0"

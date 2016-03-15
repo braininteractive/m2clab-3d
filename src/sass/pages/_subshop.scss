@@ -27,6 +27,7 @@
     display: block;
     background: #eef1f8;
     height: 50vw;
+    max-height: 210px;
     width: 100%;
     @include breakpoint($medium-up) {
       height: 33vw;

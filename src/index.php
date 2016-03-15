@@ -82,9 +82,9 @@ $app->get('/shop/{shop}', 'Acme\\PageController::showShopModels');
 
 $app->get('/admin/{shop}', 'Acme\\PageController::showAdmin')->method('GET|POST');
 
-//$app->get('/admin/{shop}/add', 'Acme\\PageController::addModel')->method('GET|POST');
-
 $app->get('/admin/delete/{shop}/{model}', 'Acme\\PageController::deleteModel')->method('GET|POST');
+
+$app->get('/admin/{shop}/{model}/edit', 'Acme\\PageController::showModelConfig')->method('GET|POST');
 
 // -------- ERROR HANDLING -------
 
