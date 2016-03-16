@@ -35,6 +35,8 @@
             <label for="config_title">Titel</label>
             {{ form_widget(form.title, {'attr': {'placeholder':'Titel'} }) }}
             <hr>
+            <label class="modelling--subtitle" for="config_minWidth">Description</label>
+            {{ form_widget(form.description, {'attr': {} }) }}
             <div class="modelling--subtitle">Preis</div>
             <div class="price-tag">100</div>
         </div>
@@ -67,6 +69,13 @@
                         <label class="modelling--subtitle" for="config_maxDepth">maxWidth</label>
                         {{ form_widget(form.maxDepth, {'attr': {} }) }}
                     </div>
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">Einprägung</a>
+                <div class="accordion-content" data-tab-content>
+                    {{ form_widget(form.embedding, {'attr': {} }) }}
+                    <label class="modelling--subtitle" for="config_embedding">erlauben</label>
                 </div>
             </li>
             <li class="accordion-item" data-accordion-item>

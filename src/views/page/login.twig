@@ -1,0 +1,16 @@
+{% extends('layout/base.twig') %}
+
+{% block content %}
+        <div class="large-3 large-centered columns">
+            <div class="login-box">
+                <div class="row">
+                    <div class="large-12 columns">
+                        {{ form_start(form) }}
+                        {{ form_widget(form.shop_name, {'attr': {'placeholder': 'Shopname'} }) }}
+                        <input type="submit" value="Login" class="btn">
+                        {{ form_end(login) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

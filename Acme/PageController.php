@@ -9,6 +9,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PageController
 {
+    public $shop_name;
+
+    public function showLogin(Request $request, Application $app)
+    {
+        $form = Shop::createLoginForm($app);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $shop = $form['shop_name']->getData();
+
+            return $app->redirect('/admin/' . $shop);
+        }
+
+        return $app['twig']->render('page/login.twig', array(
+            "form" => $form->createView()
+        ));
+    }
 
     public function showShops(Request $request, Application $app)
     {
@@ -44,7 +61,7 @@ class PageController
         $models_attr = array();
         $models = Shop::getShopModels($shop);
         foreach ($models as $model) {
-            $models_attr[$model['name']] = Model::getModelAttributes($model['name']);
+            $models_attr[$model['name']] = Model::getModelDescription($model['name']);
         }
 
         $model = new Model(rand(1, 99999));
@@ -52,19 +69,26 @@ class PageController
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $dir = '/models/' . $shop;
             $file =  $form['model']->getData();
             $extension = 'stl';
             $filename = rand(1, 99999).'.'.$extension;
             $file->move('.' . $dir, $filename);
 
-            $id = $model->store($dir . '/' . $filename, $shop);
+            $image_dir = '/models/' . $shop;
+            $image = $form['image']->getData();
+            $image->move('.' . $image_dir, $image->getClientOriginalName());
+
+            $id = $model->store($dir . '/' . $filename, $shop, $image_dir . '/' . $image->getClientOriginalName());
             $configForm = $model->createConfigForm($app);
             return $app['twig']->render('page/config.twig', array(
                 "model" =>  Model::modelExists($id),
                 "form" => $configForm->createView()
             ));
+        }elseif($form->isSubmitted() && !$form->isValid()){
+            var_dump($form->getErrors(true));
+            die();
         }
 
         return $app['twig']->render('page/admin.twig', array(
@@ -79,13 +103,14 @@ class PageController
         return $this->showAdmin($request, $app, $shop);
     }
 
-    public function showModelConfig(Request $request, Application $app, $model)
+    public function showModelConfig(Request $request, Application $app, $shop, $model)
     {
         $mdel = new Model($model);
         $form = $mdel->createConfigForm($app);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isValid()) {
+            return $app->redirect('/admin/' . $shop);
         }
 
         return $app['twig']->render('page/config.twig', array(

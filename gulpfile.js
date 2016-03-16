@@ -20,7 +20,7 @@ var CURRENT_PATH = TMP_PATH;
 
 
 gulp.task('clean', function (done) {
-  del([TMP_PATH, DIST_PATH, !DIST_PATH + '/models/*'], done);
+  del([TMP_PATH, DIST_PATH + '/*', !DIST_PATH + '/models/*'], done);
 });
 
 gulp.task('views', function () {

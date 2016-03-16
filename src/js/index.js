@@ -2,8 +2,10 @@ var $ = require('jquery');
 const fs = require('fs');
 var Accordion = require('foundation.accordion');
 var List = require('list.js');
+var Reveal = require('foundation.reveal');
 
 ( function() {
+
     if( $('#renderer').length > 0){
         var scene = require('./modules/scene');
 
@@ -36,14 +38,30 @@ var List = require('list.js');
         });
 
 		var elem = new Foundation.Accordion($('[data-accordion]'));
+
     }
 
-    var options = {
-        valueNames: ['model--name']
-    };
+    var options;
+    var modelList;
 
-    var modelList = new List('models', options);
+    if($('#models').length > 0){
+        options = {
+            valueNames: ['model--name']
+        };
+        modelList = new List('models', options);
+    }
+
+    if($('#admin--models').length > 0){
+        var modal = new Foundation.Reveal($('[data-reveal]'));
+        console.log(modal);
+        options = {
+            valueNames: ['model--name, model--description']
+        };
+        modelList = new List('admin--models', options);
+    }
+
     console.log(modelList);
+    console.log($('#admin--models').length);
 
     $('[data-delete]').on('click', function(e){
         e.preventDefault();

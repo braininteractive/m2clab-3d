@@ -42,3 +42,10 @@ h1, h2, h3, h4{
     font-style: italic;
     font-weight: 600;
 }
+.label{
+    position: absolute;
+    margin: 0 10px;
+    a, a:hover{
+        color: white;
+    }
+}

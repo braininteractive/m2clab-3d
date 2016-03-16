@@ -1,49 +1,67 @@
 {% extends('layout/base.twig') %}
 
 {% block content %}
-
+<div class="row">
+    <div class="colums small-12">
+        <ul class="menu pull-right">
+            <li><a href="/shop/{{ shop }}">Zum Shop</a></li>
+            <li><a data-open="settings">Shopeinstellungen</a></li>
+        </ul>
+    </div>
+</div>
     <div class="row">
 
-        {{ form_start(form) }}
+        <div class="reveal" id="settings" data-reveal>
+            Test
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="reveal" id="add-modell" data-reveal>
+            {{ form_start(form) }}
             <div class="column small-12">
-                <h3>Modell hinzufügen</h3>
+                <h3 id="modalTitle">Modell hinzufügen</h3>
             </div>
             <div class="column small-4 text-center">
                 {{ form_widget(form.model, {'attr': {'class': 'inputfile', 'accept' : '.stl'} }) }}
                 <label for="model_model"><i class="fa fa-cloud-upload fa-2x"></i><br><span>1. Upload Model</span></label>
             </div>
             <div class="column small-4 text-center">
-                <input type="file" class="inputfile" id="model_image">
-                <label for="model_image"><i class="fa fa-cloud-upload fa-2x"></i><br><span>3. Upload Image</span></label>
+                {{ form_widget(form.image, {'attr': {'class': 'inputfile', 'accept' : '.jpg, .png, .jpeg', 'id': 'model_image'} }) }}
+                <label for="model_image"><i class="fa fa-cloud-upload fa-2x"></i><br><span>2. Upload Image</span></label>
             </div>
             <div class="column small-4 text-center">
-                <input type="submit" value="4. Add Model" class="inputfile--submit">
+                <input type="submit" value="3. Add Model" class="inputfile--submit">
             </div>
-        {{ form_end(form) }}
-        <div class="column small-12">
-            <h3>Modelle</h3>
+            {{ form_end(form) }}
+
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="column small-12" id="admin--models">
+            <h3>Modelle<span class="label"><a data-open="add-modell">Hinzufügen</a></span></h3>
+            <input type="text" class="search" placeholder="search">
             <table>
+                <tbody class="list">
                 <tr>
-                    <th>Modelname</th>
-                    <th>Attributes</th>
-                    <th></th>
+                    <th width="100">Modelname</th>
+                    <th width="200">Beschreibung</th>
+                    <th width="10">Bearbeiten</th>
                 </tr>
-                {% for i, model in models %}
+
+                {% for i, description in models %}
                     <tr>
-                        <td>{{ i }}</td>
-                        <td>
-                            <ul>
-                                {% for attribute in model %}
-                                    <li><b>{{ attribute.name }}:</b> {{ attribute.min ? attribute.min }} - {{ attribute.max ? attribute.max }} // {{ attribute.initial }}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
+                        <td class="model--name"><a href="/admin/{{ shop }}/{{ i }}/edit">{{ i }}</a></td>
+                        <td class="model--description">{{ description }}</td>
                         <td>
                             <a href="/admin/{{ shop }}/{{ i }}/edit"><i class="fa fa-pencil fa-2x" ></i></a>
                             <i class="fa fa-trash-o fa-2x" data-delete="{{ i }}" data-url="delete/{{ shop }}/{{ i }}"></i>
                         </td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>

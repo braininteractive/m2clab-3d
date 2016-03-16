@@ -2,9 +2,12 @@
   position: relative;
   text-transform: uppercase;
   margin: 0 20px;
-  background-color: #eef1f8;
+  background-color: rgb(50, 48, 109);
   background-size: cover;
   background-repeat: no-repeat;
+  height: 350px;
+  float: left;
+  margin-bottom: 20px;
   &--link {
     color: #fff;
     h2{
@@ -29,6 +32,8 @@
     height: 50vw;
     max-height: 210px;
     width: 100%;
+    background-size: cover;
+    background-position: center center;
     @include breakpoint($medium-up) {
       height: 33vw;
     }

@@ -17,3 +17,12 @@ body {
 .fullheight{
   height: 100%;
 }
+
+.login-box{
+  border: 1px solid #ddd;
+  margin: 100px 0;
+  padding: 40px 20px 40px 20px;
+  input {
+    width: 100%;
+  }
+}
