@@ -1,7 +1,4 @@
-# setup vagrant
-
-- default values in puphpet/config.yaml are: `192.168.56.112  local.app`
-- apache serves `dist` directory
+# setup docker
 
 # serve
 
