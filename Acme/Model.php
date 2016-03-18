@@ -30,15 +30,15 @@ class Model
         return $this->name;
     }
     public function setTitle($title){
-        $mdl = R::findOne('models','id = ?', [$this->id] );
+        $mdl = R::findOne('models','name = ?', [$this->name] );
         $mdl->name = $title;
         R::store($mdl);
     }
     public function getDescription(){
-        return $this->getModelDescription($this->id);
+        return $this->getModelDescription($this->name);
     }
     public function setDescription($description){
-        $mdl = R::findOne('models','id = ?', [$this->id] );
+        $mdl = R::findOne('models','name = ?', [$this->name] );
         $mdl->description = $description;
         R::store($mdl);
     }
@@ -47,42 +47,42 @@ class Model
     }
     public function setMinWidth($minWidth)
     {
-        $this->setModelAttribute($this->id, 'width', 'min', $minWidth);
+        $this->setModelAttribute($this->name, 'width', 'min', $minWidth);
     }
     public function getMaxWidth(){
         return $this->getModelAttribute($this->name, 'width', 'max');
     }
     public function setMaxWidth($maxWidth)
     {
-        $this->setModelAttribute($this->id, 'width', 'max', $maxWidth);
+        $this->setModelAttribute($this->name, 'width', 'max', $maxWidth);
     }
     public function getMinHeight(){
         return $this->getModelAttribute($this->name, 'height', 'min');
     }
     public function setMinHeight($minHeight)
     {
-        $this->setModelAttribute($this->id, 'height', 'min', $minHeight);
+        $this->setModelAttribute($this->name, 'height', 'min', $minHeight);
     }
     public function getMaxHeight(){
         return $this->getModelAttribute($this->name, 'height', 'max');
     }
     public function setMaxHeight($maxHeight)
     {
-        $this->setModelAttribute($this->id, 'height', 'max', $maxHeight);
+        $this->setModelAttribute($this->name, 'height', 'max', $maxHeight);
     }
     public function getMinDepth(){
         return $this->getModelAttribute($this->name, 'depth', 'min');
     }
     public function setMinDepth($minDepth)
     {
-        $this->setModelAttribute($this->id, 'depth', 'min', $minDepth);
+        $this->setModelAttribute($this->name, 'depth', 'min', $minDepth);
     }
     public function getMaxDepth(){
         return $this->getModelAttribute($this->name, 'depth', 'max');
     }
     public function setMaxDepth($maxDepth)
     {
-        $this->setModelAttribute($this->id, 'depth', 'max', $maxDepth);
+        $this->setModelAttribute($this->name, 'depth', 'max', $maxDepth);
     }
     public function getEmbedding()
     {

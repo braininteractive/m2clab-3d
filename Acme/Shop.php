@@ -23,7 +23,7 @@ class Shop
 
     static function getShopModels($shop)
     {
-        return R::getAll('SELECT name, image FROM models WHERE shop_id = (SELECT id FROM shops WHERE name = ?) AND Coalesce(deleted, 0) = 0', [$shop]);
+        return R::getAll('SELECT name, image, description FROM models WHERE shop_id = (SELECT id FROM shops WHERE name = ?) AND Coalesce(deleted, 0) = 0', [$shop]);
     }
 
 
