@@ -15,7 +15,7 @@
         };
     </script>
     <div class="columns medium-7 no-padding">
-        <div id="renderer">
+        <div id="renderer" class="admin-renderer">
             <i class="fa fa-expand fa-2x renderer--expand"></i>
             <div class="embedded--edit">
                 <span class="embedded--option embedded--move"><i class="fa fa-arrows fa-2x"></i></span>
@@ -87,6 +87,7 @@
         </ul>
 
         <input type="submit" class="button" value="Save">
+        <div id="faces" style="display: none;"></div>
     </div>
     {{ form_end(form) }}
 

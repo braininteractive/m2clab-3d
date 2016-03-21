@@ -11,6 +11,8 @@ var gui = require('./gui');
 var raycast = require('./raycast');
 var calculate = require('./calculate');
 
+var mouse = new THREE.Vector2();
+
 
 
 require('../vendor/STLLoader');
@@ -75,7 +77,6 @@ function initGraphics(url) {
     var cameraTarget = new THREE.Vector3( 0, 0, 0 );
     camera.position.set(0, 0, 100);
     camera.lookAt(cameraTarget);
-
     controls = new OrbitControls(camera, document.getElementById('renderer'));
     //controls.noZoom = true;
     controls.rotateSpeed = 1.0;
@@ -85,7 +86,6 @@ function initGraphics(url) {
     controls.noPan = false;
     controls.staticMoving = true;
     controls.dynamicDampingFactor = 0.3;
-    controls.minDistance = 80;
     controls.zoomSpeed = 0.1;
 
     light.init(scene, camera, controls);
@@ -96,12 +96,13 @@ function initGraphics(url) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
         var material;
         if (geometry.hasColors) {
-            material = new THREE.MeshPhongMaterial({ opacity: geometry.alpha, vertexColors: THREE.VertexColors });
+            material = new THREE.MeshPhongMaterial({ opacity: geometry.alpha, vertexColors: THREE.FaceColors });
         } else {
             material = new THREE.MeshPhongMaterial({
                 color: 0x787878,
                 specular: 0x111111,
-                shininess: 200
+                shininess: 200,
+                vertexColors: THREE.FaceColors
             });
         }
 
@@ -165,12 +166,23 @@ function render(t) {
 
 document.getElementById('renderer').onmousemove = function(event) {
     gui.moveText(event, camera, renderer, mesh, scene);
+    if ($('.admin-renderer').length > 0){
+        gui.checkSelection(event, camera, renderer, mesh);
+    }
 };
 
 document.getElementById('renderer').onmousedown = function(event) {
     gui.selectText(event, camera, renderer, mesh, controls, scene);
+    if ($('.admin-renderer').length > 0){
+        gui.toggleSelection(event, camera, renderer, mesh, controls);
+    }
 };
 
 document.getElementById('renderer').onmouseup = function(event) {
     gui.dropText(event, camera, renderer, mesh, controls);
+    if ($('.admin-renderer').length > 0){
+        gui.toggleSelection(event, camera, renderer, mesh, controls);
+    }
 };
+
+

@@ -81,11 +81,8 @@ class PageController
             $image->move('.' . $image_dir, $image->getClientOriginalName());
 
             $id = $model->store($dir . '/' . $filename, $shop, $image_dir . '/' . $image->getClientOriginalName());
-            $configForm = $model->createConfigForm($app);
-            return $app['twig']->render('page/config.twig', array(
-                "model" =>  Model::modelExists($id),
-                "form" => $configForm->createView()
-            ));
+            return $this->showModelConfig($request, $app, $shop, Model::getModelName($id));
+
         }elseif($form->isSubmitted() && !$form->isValid()){
             var_dump($form->getErrors(true));
             die();
@@ -109,7 +106,6 @@ class PageController
         $form = $mdel->createConfigForm($app);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             return $app->redirect('/admin/' . $shop);
         }
 

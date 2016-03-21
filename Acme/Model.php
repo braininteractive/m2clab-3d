@@ -121,6 +121,11 @@ class Model
         }
     }
 
+    static function getModelName($model)
+    {
+        return R::getAll('SELECT name FROM models WHERE id = ?', [$model])[0]['name'];
+    }
+
     static function getModelAttributes($model)
     {
         return R::getAll('SELECT a.name, a.type, ag.name collection, r.initial, r.price, r.max, r.min FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id INNER JOIN attr_groups ag ON ag.id = a.group_id WHERE m.name = ? AND Coalesce(m.deleted, 0) = 0', [$model]);

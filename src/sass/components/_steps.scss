@@ -48,10 +48,21 @@
         margin-left: 10px;
       }
       &__config{
-        width: 45%;
+
+        width: 50%;
         float: left;
         &:after{
           content:'';
+        }
+        input, label{
+          width: 80%;
+          display: inline-block;
+        }
+        &:nth-child(even):before{
+          content: '-';
+          float: left;
+          margin: 38px 9px 0;
+          display: block;
         }
       }
     }

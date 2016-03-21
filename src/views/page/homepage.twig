@@ -2,6 +2,7 @@
 
 {% block content %}
   <header>
+    <img src="/images/{{ random(['logo-1.png', 'logo-2.png', 'logo-3.png']) }}" alt="" class="logo">
     <div class="col-xs-12">
       <h1>Think it. Print it.</h1>
     </div>
@@ -13,11 +14,13 @@
   </header>
   <div class="row">
     {% for shop in shops %}
-      <div class="subshop columns medium-5" style="background-image: url('{{ shop.image }}');">
-        <a href="/shop/{{ shop.name }}" class="subshop--link" style="position: absolute; bottom: 20px; left: 20px;">
-          <h2>{{ shop.name }}</h2><br>
-          <span>Jetzt entdecken!</span>
-        </a>
+      <div class="columns medium-6">
+        <div class="subshop" style="background-image: url('{{ shop.image }}');">
+          <a href="/shop/{{ shop.name }}" class="subshop--link" style="position: absolute; bottom: 20px; left: 20px;">
+            <h2>{{ shop.name }}</h2><br>
+            <span>Jetzt entdecken!</span>
+          </a>
+        </div>
 
       </div>
     {% endfor %}

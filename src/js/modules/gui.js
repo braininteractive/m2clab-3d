@@ -10,17 +10,64 @@ var boxSize;
 var attributes;
 var configs = {};
 var text;
-var SELECTED, MOVE;
+var SELECTED, MOVE, DRAW;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(),
-    offset = new THREE.Vector3();
+    offset = new THREE.Vector3(),
+    projector = new THREE.Projector();
 var objects = [];
 var embossing;
+var selectedFaces = [];
 
 module.exports = {
     init: function init(box, mesh, url, scene) {
         mesh.scale.set(params.width, params.height, params.depth);
         buildGUI(mesh, scene);
+    },
+    toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
+        mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, camera );
+        var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+        var intersects = ray.intersectObject( mesh, true );
+        if ( intersects.length > 0 ) {
+            DRAW = !DRAW;
+            controls.enabled = !controls.enabled;
+        }
+    },
+    checkSelection: function checkSelection(event, camera, renderer, mesh){
+        if (DRAW) {
+            mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
+            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+            var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+            projector.unprojectVector( vector, camera );
+            var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+            var intersects = ray.intersectObject( mesh, true );
+            if ( intersects.length > 0 )
+            {
+                var test=-1;
+                selectedFaces.forEach( function(arrayItem)
+                {
+                    if(intersects[0].faceIndex==arrayItem.faceIndex && intersects[0].object.id==arrayItem.object.id){
+                        test=selectedFaces.indexOf(arrayItem);
+                    }
+                });
+                if(test>=0){
+                    intersects[ 0 ].face.color=new THREE.Color( 0x787878 );
+                    selectedFaces.splice(test, 1);
+                }
+                else{
+                    intersects[ 0 ].face.color.setHex( 0xff0000 );
+                    selectedFaces.push(intersects[0].face);
+                }
+                intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
+            }
+        }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
         if (SELECTED && MOVE) {
