@@ -145,5 +145,12 @@ class PageController
         ));
     }
 
+    public function showStyleguide(Request $request, Application $app)
+    {
+        return $app['twig']->render('page/styleguide.twig', array(
+        ));
+    }
+
+
 
 }

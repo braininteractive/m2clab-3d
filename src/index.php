@@ -88,6 +88,8 @@ $app->get('/admin/delete/{shop}/{model}', 'Acme\\PageController::deleteModel')->
 
 $app->get('/admin/{shop}/{model}/edit', 'Acme\\PageController::showModelConfig')->method('GET|POST');
 
+$app->get('/styleguide', 'Acme\\PageController::showStyleguide')->method('GET|POST');
+
 // -------- ERROR HANDLING -------
 
 $app->error(function (\Exception $e, $code) use ($app)
