@@ -15,17 +15,49 @@ class Shop
     public $description;
     public $shop_name;
 
-    private $image;
+    public $image;
+    public $title_image;
 
     public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage($image)
+    public function setImage($image, $shop)
     {
+
+        $shopID = self::existsShop($shop)->getID();
+        $shopBean = R::load('shops',$shopID);
+        $shopBean->image = $image;
+        R::store($shopBean);
         $this->image = $image;
         return $this;
+    }
+
+    public function getTitleImage()
+    {
+        return $this->title_image;
+    }
+
+    public function setTitleImage($image, $shop)
+    {
+
+        $shopID = self::existsShop($shop)->getID();
+        $shopBean = R::load('shops',$shopID);
+        $shopBean->title_image = $image;
+        R::store($shopBean);
+        $this->title_image = $image;
+        return $this;
+    }
+
+    public function getSavedImage($shop){
+        $shopID = self::existsShop($shop)->getID();
+        return R::load('shops',$shopID)->image;
+    }
+
+    public function getSavedTitleImage($shop){
+        $shopID = self::existsShop($shop)->getID();
+        return R::load('shops',$shopID)->title_image;
     }
 
     static function getShops($shop)
@@ -47,7 +79,8 @@ class Shop
     {
         $formBuilder = $app['form.factory']->createNamedBuilder('shop', 'form', $this);
         $form = $formBuilder
-            ->add('image', 'file', array())
+            ->add('image', 'file', array('required' => false))
+            ->add('title_image', 'file', array('required' => false))
             ->getForm();
         return $form;
     }

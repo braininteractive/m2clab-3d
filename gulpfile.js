@@ -19,9 +19,9 @@ var DIST = false;
 var CURRENT_PATH = TMP_PATH;
 
 
-gulp.task('clean', function (done) {
-  del([TMP_PATH, DIST_PATH + '/**/*', !DIST_PATH + '/{models,models/**}'], done);
-});
+//gulp.task('clean', function (done) {
+//  del([TMP_PATH, DIST_PATH + '/**/*', !DIST_PATH + '/{models,models/**}'], done);
+//});
 
 gulp.task('views', function () {
   var stream = gulp.src([
@@ -73,7 +73,7 @@ gulp.task('watch', function () {
 
 gulp.task('serve', function (done) {
   g.livereload.listen();
-  runSequence('clean', 'lint', ['browserify', 'sass', 'assets', 'images'], 'views', 'watch', done);
+  runSequence(/*'clean',*/ 'lint', ['browserify', 'sass', 'assets', 'images'], 'views', 'watch', done);
 });
 
 gulp.task('sass', function () {
@@ -153,7 +153,7 @@ gulp.task('test', function (done) {
 gulp.task('dist', function (done) {
   DIST = true;
   CURRENT_PATH = DIST_PATH;
-  runSequence('clean', 'lint', ['browserify', 'sass', 'images', 'assets'], 'views', done);
+  runSequence(/*'clean',*/ 'lint', ['browserify', 'sass', 'images', 'assets'], 'views', done);
 });
 
 gulp.task('default', ['serve']);

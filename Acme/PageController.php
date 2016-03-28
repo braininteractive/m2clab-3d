@@ -40,6 +40,7 @@ class PageController
         $models = Shop::getShopModels($shop);
         return $app['twig']->render('page/shop.twig', array(
             "shop" => $shop,
+            "shop_title_image" => Shop::getSavedTitleImage($shop),
             "models" => $models
         ));
     }
@@ -70,22 +71,30 @@ class PageController
 
         $subshop = new Shop();
         $shop_form = $subshop->createForm($app);
+        $shop_form->handleRequest($request);
 
         if ($shop_form->isSubmitted() && $shop_form->isValid()) {
-            echo 'TEST';
-            die();
-            $file = $product->getImage();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $imageDir = '/shop/'. $shop;
-            $file->move($imageDir, $fileName);
-            $product->setImage($fileName);
+            $imageDir = '/images/'. $shop;
+
+            if(!empty($shop_form['image']->getData())){
+                $file = $shop_form['image']->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move('.' . $imageDir, $fileName);
+                $subshop->setImage($imageDir . '/' . $fileName, $shop);
+            }
+            if(!empty($shop_form['title_image']->getData())){
+                $file = $shop_form['title_image']->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move('.' . $imageDir, $fileName);
+                $subshop->setTitleImage($imageDir . '/' . $fileName, $shop);
+            }
         } elseif ($shop_form->isSubmitted() && !$shop_form->isValid()){
             var_dump($form->getErrors(true));
             die();
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dir = '/models/' . $shop;
+            $dir = '/models/shop/' . $shop;
             $file =  $form['model']->getData();
             $extension = 'stl';
             $filename = rand(1, 99999).'.'.$extension;
@@ -107,7 +116,9 @@ class PageController
             "shop" => $shop,
             "models" => $models_attr,
             "form" => $form->createView(),
-            "shop_form" => $shop_form->createView()
+            "shop_form" => $shop_form->createView(),
+            "shop_image" => $subshop->getSavedImage($shop),
+            "shop_title_image" => $subshop->getSavedTitleImage($shop)
         ));
     }
 

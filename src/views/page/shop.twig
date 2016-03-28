@@ -1,7 +1,7 @@
 {% extends('layout/base.twig') %}
 
 {% block content %}
-    <header>
+    <header {% if shop_title_image %} style="background-image: url({{ shop_title_image }})" {% endif %}>
         <a href="/"><img src="/images/{{ random(['logo-1.png', 'logo-2.png', 'logo-3.png']) }}" alt="" class="logo"></a>
         <div class="row">
             <div class="small-12 columns">
