@@ -30,7 +30,7 @@ class Model
         return $this->name;
     }
     public function setTitle($title){
-        $mdl = R::findOne('models','name = ?', [$this->name] );
+        $mdl = R::load('models',$this->id);
         $mdl->name = $title;
         R::store($mdl);
     }
@@ -38,7 +38,7 @@ class Model
         return $this->getModelDescription($this->name);
     }
     public function setDescription($description){
-        $mdl = R::findOne('models','name = ?', [$this->name] );
+        $mdl = R::load('models',$this->id);
         $mdl->description = $description;
         R::store($mdl);
     }
@@ -90,6 +90,12 @@ class Model
     }
     public function setEmbedding($selection)
     {
+        if ($selection){
+            $this->setModelAttribute($this->id, 'text');
+        } else {
+            $item = R::findAll('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, 5] );
+            R::trashAll($item);
+        }
     }
     public function getForms(){
         $all_forms =  R::getAll('SELECT id, name FROM attributes WHERE group_id = 4', []);

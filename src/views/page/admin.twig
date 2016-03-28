@@ -11,13 +11,23 @@
 </div>
     <div class="row">
 
-        <div class="reveal" id="settings" data-reveal>
-            Test
+        <div class="reveal" id="settings" data-reveal data-close-on-esc	>
+            {{ form_start(shop_form) }}
+            <div class="column small-12">
+                <h3 id="modalTitle">Shopeinstellungen</h3>
+            </div>
+            <div class="column small-4 text-center">
+                {{ form_widget(shop_form.image, {'attr': {'class': 'inputfile', 'accept' : '.jpg, .png, .jpeg', 'id': 'shop_image'} }) }}
+                <label for="shop_image"><i class="fa fa-cloud-upload fa-2x"></i><br><span>Change Image</span></label>
+                <input type="submit" value="Save" class="inputfile--submit">
+            </div>
             <button class="close-button" data-close aria-label="Close reveal" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
+            {{ form_end(shop_form) }}
         </div>
-        <div class="reveal" id="add-modell" data-reveal>
+
+        <div class="small reveal" id="add-modell" data-reveal data-close-on-esc>
             {{ form_start(form) }}
             <div class="column small-12">
                 <h3 id="modalTitle">Modell hinzufügen</h3>
@@ -44,13 +54,12 @@
             <h3>Modelle<span class="label"><a data-open="add-modell">Hinzufügen</a></span></h3>
             <input type="text" class="search" placeholder="search">
             <table>
-                <tbody class="list">
-                <tr>
-                    <th width="100">Modelname</th>
+                <thead>
+                    <th class="sort" width="100">Modelname</th>
                     <th width="200">Beschreibung</th>
                     <th width="10">Bearbeiten</th>
-                </tr>
-
+                </thead>
+                <tbody class="list">
                 {% for i, description in models %}
                     <tr>
                         <td class="model--name"><a href="/admin/{{ shop }}/{{ i }}/edit">{{ i }}</a></td>

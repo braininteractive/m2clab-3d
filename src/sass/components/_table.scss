@@ -16,8 +16,8 @@ table{
     &:nth-child(odd){
       background: #eee;
     }
-    &:first-child{
-      background: #ddd;
-    }
+  }
+  thead, thead tr{
+      background: #ddd !important;
   }
 }

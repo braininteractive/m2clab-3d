@@ -52,16 +52,15 @@ var Reveal = require('foundation.reveal');
     }
 
     if($('#admin--models').length > 0){
-        var modal = new Foundation.Reveal($('[data-reveal]'));
-        console.log(modal);
+        var modal_one = new Foundation.Reveal($('#settings'));
+        var modal_two = new Foundation.Reveal($('#add-modell'));
+
+
         options = {
-            valueNames: ['model--name, model--description']
+            valueNames: ['model--name', 'model--description']
         };
         modelList = new List('admin--models', options);
     }
-
-    console.log(modelList);
-    console.log($('#admin--models').length);
 
     $('[data-delete]').on('click', function(e){
         e.preventDefault();

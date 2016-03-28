@@ -13,8 +13,20 @@ class Shop
 
     public $name;
     public $description;
-    public $image;
     public $shop_name;
+
+    private $image;
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
 
     static function getShops($shop)
     {
@@ -26,10 +38,18 @@ class Shop
         return R::getAll('SELECT name, image, description FROM models WHERE shop_id = (SELECT id FROM shops WHERE name = ?) AND Coalesce(deleted, 0) = 0', [$shop]);
     }
 
-
     static function existsShop($shop)
     {
         return R::findOne('shops', 'name = ?', [$shop]);
+    }
+
+    public function createForm(\Silex\Application $app)
+    {
+        $formBuilder = $app['form.factory']->createNamedBuilder('shop', 'form', $this);
+        $form = $formBuilder
+            ->add('image', 'file', array())
+            ->getForm();
+        return $form;
     }
 
     public function createLoginForm(\Silex\Application $app)

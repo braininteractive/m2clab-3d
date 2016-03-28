@@ -66,8 +66,23 @@ class PageController
 
         $model = new Model(rand(1, 99999));
         $form = $model->createForm($app);
-
         $form->handleRequest($request);
+
+        $subshop = new Shop();
+        $shop_form = $subshop->createForm($app);
+
+        if ($shop_form->isSubmitted() && $shop_form->isValid()) {
+            echo 'TEST';
+            die();
+            $file = $product->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $imageDir = '/shop/'. $shop;
+            $file->move($imageDir, $fileName);
+            $product->setImage($fileName);
+        } elseif ($shop_form->isSubmitted() && !$shop_form->isValid()){
+            var_dump($form->getErrors(true));
+            die();
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $dir = '/models/' . $shop;
@@ -91,7 +106,8 @@ class PageController
         return $app['twig']->render('page/admin.twig', array(
             "shop" => $shop,
             "models" => $models_attr,
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "shop_form" => $shop_form->createView()
         ));
     }
 
@@ -107,6 +123,9 @@ class PageController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             return $app->redirect('/admin/' . $shop);
+        }elseif($form->isSubmitted() && !$form->isValid()){
+            var_dump($form->getErrors(true));
+            die();
         }
 
         return $app['twig']->render('page/config.twig', array(
