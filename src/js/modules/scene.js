@@ -4,9 +4,7 @@ var OrbitControls = require('three-orbit-controls')(THREE);
 var $ = require('jquery');
 var Filesaver = require('filesaver.js');
 
-var ground = require('./ground_module');
 var light = require('./light_module');
-var calc = require('./calculate');
 var gui = require('./gui');
 var raycast = require('./raycast');
 var calculate = require('./calculate');

@@ -1,13 +1,13 @@
 web:
-  image: crollalowis/nginx-php5
+  image: crollalowis/apache-php5
   ports:
     - "80:80"
-  volumes:
-    - .:/var/www
-    - ./compose/config/nginx:/etc/nginx/sites-enabled:rw
-    - ./compose/logs/nginx:/var/log/nginx:rw
   links:
     - db
+  volumes:
+    - .:/var/www
+    - ./compose/config/apache:/etc/apache2/sites-enabled:rw
+    - ./compose/logs/apache:/var/log/apache2:rw
 
 db:
   image: crollalowis/mysql
