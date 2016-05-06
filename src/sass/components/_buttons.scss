@@ -7,7 +7,7 @@
   height: 60px;
 }
 
-.btn{
+.btn {
   border-width: 1px;
   border-style: solid;
   border-color: #000;
@@ -19,4 +19,8 @@
     border-color: #fff;
     color: #fff;
   }
+}
+
+.button {
+  background-color: $color--lila;
 }

@@ -69,8 +69,6 @@ function initGraphics(url) {
     scene = new THREE.Scene();
     scene.add(new THREE.AmbientLight(0x444444));
 
-    //ground.init(scene);
-
     camera = new THREE.PerspectiveCamera(60, contentWidth / contentHeight, 1, 100000);
     var cameraTarget = new THREE.Vector3( 0, 0, 0 );
     camera.position.set(0, 0, 100);
@@ -107,6 +105,21 @@ function initGraphics(url) {
         mesh = new THREE.Mesh(geometry, material);
 
         geometry.computeBoundingBox();
+            // create an helper
+        var correctForDepth = 3;
+        var helper = new THREE.BoundingBoxHelper(mesh);
+        helper.update();
+        // get the bounding sphere
+        var boundingSphere = helper.box.getBoundingSphere();
+        // calculate the distance from the center of the sphere
+        // and subtract the radius to get the real distance.
+        var centr = boundingSphere.center;
+        var radius = boundingSphere.radius;
+        var distance = centr.distanceTo(camera.position) - radius;
+        var realHeight = Math.abs(helper.box.max.y - helper.box.min.y);
+        var fov = 2 * Math.atan(realHeight * correctForDepth / ( 2 * distance )) * ( 180 / Math.PI );
+        camera.position.z = fov;
+        camera.updateProjectionMatrix();
 
         var center = new THREE.Vector3();
         center.addVectors( geometry.boundingBox.min, geometry.boundingBox.max );
@@ -162,6 +175,8 @@ function render(t) {
     lastTime = t;
 }
 
+// TODO onTouch Funktionen für Tablet Unterstützung
+
 document.getElementById('renderer').onmousemove = function(event) {
     gui.moveText(event, camera, renderer, mesh, scene);
     if ($('.admin-renderer').length > 0){
@@ -182,5 +197,3 @@ document.getElementById('renderer').onmouseup = function(event) {
         gui.toggleSelection(event, camera, renderer, mesh, controls);
     }
 };
-
-

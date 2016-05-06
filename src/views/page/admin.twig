@@ -22,10 +22,15 @@
                     <div style="background-image: url({{ shop_image }}); background-size: contain; background-repeat: no-repeat; width: 100%; height: 200px" alt=""></div>
                     {{ form_widget(shop_form.image, {'attr': {'accept' : '.jpg, .png, .jpeg', 'id': 'shop_image'} }) }}
                 </div>
-                <div class="column small-8">
+                <div class="column small-4">
                     <h5>Titelbild</h5>
                     <div style="background-image: url({{ shop_title_image }}); background-size: contain; background-repeat: no-repeat; width: 100%; height: 200px" alt=""></div>
                     {{ form_widget(shop_form.title_image, {'attr': {'accept' : '.jpg, .png, .jpeg', 'id': 'shop_image'} }) }}
+                </div>
+                <div class="column small-4">
+                    <h5>Logo</h5>
+                    <div style="background-image: url({{ shop_logo }}); background-size: contain; background-repeat: no-repeat; width: 100%; height: 200px" alt=""></div>
+                    {{ form_widget(shop_form.logo, {'attr': {'accept' : '.jpg, .png, .jpeg', 'id': 'shop_image'} }) }}
                 </div>
                 <input type="submit" value="Save" class="inputfile--submit">
             </div>

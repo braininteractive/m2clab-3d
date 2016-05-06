@@ -17,6 +17,7 @@ class Shop
 
     public $image;
     public $title_image;
+    public $logo;
 
     public function getImage()
     {
@@ -50,6 +51,21 @@ class Shop
         return $this;
     }
 
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    public function setLogo($image, $shop)
+    {
+        $shopID = self::existsShop($shop)->getID();
+        $shopBean = R::load('shops',$shopID);
+        $shopBean->logo = $image;
+        R::store($shopBean);
+        $this->logo = $image;
+        return $this;
+    }
+
     public function getSavedImage($shop){
         $shopID = self::existsShop($shop)->getID();
         return R::load('shops',$shopID)->image;
@@ -58,6 +74,10 @@ class Shop
     public function getSavedTitleImage($shop){
         $shopID = self::existsShop($shop)->getID();
         return R::load('shops',$shopID)->title_image;
+    }
+    public function getSavedLogo($shop){
+        $shopID = self::existsShop($shop)->getID();
+        return R::load('shops',$shopID)->logo;
     }
 
     static function getShops($shop)
@@ -81,6 +101,7 @@ class Shop
         $form = $formBuilder
             ->add('image', 'file', array('required' => false))
             ->add('title_image', 'file', array('required' => false))
+            ->add('logo', 'file', array('required' => false))
             ->getForm();
         return $form;
     }

@@ -1,3 +1,4 @@
+// TODO select Faces where its aloud to place objects
 
 var $ = require("jquery");
 //var dat = require('dat-gui');

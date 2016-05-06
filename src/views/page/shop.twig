@@ -1,11 +1,17 @@
+
 {% extends('layout/base.twig') %}
 
 {% block content %}
+<!-- TODO Favorisierungsmöglichkeit -->
     <header {% if shop_title_image %} style="background-image: url({{ shop_title_image }})" {% endif %}>
-        <a href="/"><img src="/images/{{ random(['logo-1.png', 'logo-2.png', 'logo-3.png']) }}" alt="" class="logo"></a>
         <div class="row">
             <div class="small-12 columns">
-                <h1>{{ shop }}</h1>
+                {% if shop_logo %}
+                  <img class="subshop--logo" src="{{ shop_logo }}" style=""/>
+                {% else %}
+                  <h1>{{ shop }}</h1>
+                {% endif %}
+                <a href="/" class="subshop--feat-logo">featured by <img src="/images/{{ random(['logo-1.png', 'logo-2.png', 'logo-3.png']) }}" alt="" class=""></a>
             </div>
             <div class="buttons">
                 <a href="/admin/{{ shop }}" class="btn btn__invert">Login</a>
@@ -19,7 +25,7 @@
 
         <ul class="row list">
             {% for model in models %}
-                <li class="small-6 medium-4 large-3 columns model">
+                <li class="small-12 medium-4 columns model">
                     <a href="/shop/{{ shop }}/{{ model.name }}">
                         <div class="model--image" style="background-image: url('{{ model.image }}')"></div>
                         <h2 class="model--name">{{ model.name }}</h2>

@@ -41,18 +41,20 @@ class PageController
         return $app['twig']->render('page/shop.twig', array(
             "shop" => $shop,
             "shop_title_image" => Shop::getSavedTitleImage($shop),
-            "models" => $models
+            "models" => $models,
+            "shop_logo" => Shop::getSavedLogo($shop)
         ));
     }
 
-    public function showModel(Request $request, Application $app, $model)
+    public function showModel(Request $request, Application $app, $shop, $model)
     {
         $modelAttr = Model::getModelAttributes($model);
         $modelGroups = Model::getGroups($model);
         return $app['twig']->render('page/model.twig', array(
             "modelAttr" => $modelAttr,
             "model" => Model::modelExists($model),
-            "groups" => $modelGroups
+            "groups" => $modelGroups,
+            "shop" => $shop
         ));
     }
 
@@ -88,6 +90,12 @@ class PageController
                 $file->move('.' . $imageDir, $fileName);
                 $subshop->setTitleImage($imageDir . '/' . $fileName, $shop);
             }
+            if(!empty($shop_form['logo']->getData())){
+                $file = $shop_form['logo']->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move('.' . $imageDir, $fileName);
+                $subshop->setLogo($imageDir . '/' . $fileName, $shop);
+            }
         } elseif ($shop_form->isSubmitted() && !$shop_form->isValid()){
             var_dump($form->getErrors(true));
             die();
@@ -118,7 +126,8 @@ class PageController
             "form" => $form->createView(),
             "shop_form" => $shop_form->createView(),
             "shop_image" => $subshop->getSavedImage($shop),
-            "shop_title_image" => $subshop->getSavedTitleImage($shop)
+            "shop_title_image" => $subshop->getSavedTitleImage($shop),
+            "shop_logo" => $subshop->getSavedLogo($shop)
         ));
     }
 
@@ -141,7 +150,8 @@ class PageController
 
         return $app['twig']->render('page/config.twig', array(
             "model" => Model::modelExists($model),
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "shop" => $shop
         ));
     }
 

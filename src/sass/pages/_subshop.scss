@@ -1,21 +1,49 @@
 .subshop {
+  background-color: $color--lila;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  margin-bottom: 20px;
   position: relative;
   text-transform: uppercase;
-  background-color: rgb(50, 48, 109);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 350px;
-  margin-bottom: 20px;
+
   &--link {
-    color: #fff;
-    h2{
+    color: #000;
+
+    h2 {
       font-weight: 200;
       margin-bottom: 10px;
     }
-    span{
-      padding-bottom: 6px;
-      border-bottom: 2px solid #fb9987;
+
+    span {
+      border-bottom: 2px solid $color--orange;
       font-weight: 600;
+      padding-bottom: 6px;
+    }
+  }
+
+  &--logo {
+    left: 50%;
+    max-height: 300px;
+    max-width: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+  }
+
+  &--feat-logo{
+    bottom: 20px;
+    color: #fff;
+    height: 20px;
+    line-height: 0;
+    position: absolute;
+    right: 20px;
+    width: auto;
+    z-index: 2;
+
+    img {
+      height: 20px;
     }
   }
 }
@@ -25,19 +53,12 @@
 
   }
   &--image {
-    display: block;
     background: #eef1f8;
-    height: 50vw;
-    max-height: 210px;
-    width: 100%;
-    background-size: cover;
     background-position: center center;
-    @include breakpoint($medium-up) {
-      height: 33vw;
-    }
-    @include breakpoint($large-up) {
-      height: 25vw;
-    }
+    background-size: cover;
+    display: block;
+    height: 300px;
+    width: 100%;
   }
   h2{
     color: #333;
