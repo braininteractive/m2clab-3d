@@ -84,6 +84,13 @@ class Model
     {
         $this->setModelAttribute($this->name, 'depth', 'max', $maxDepth);
     }
+    public function getFaces(){
+        return $this->getModelAttribute($this->name, 'faces', 'initial');
+    }
+    public function setFaces($faces)
+    {
+        $this->setModelAttribute($this->name, 'faces', 'initial', $faces);
+    }
     public function getEmbedding()
     {
         return !empty($this->getModelAttribute($this->name, 'text'));
@@ -139,7 +146,7 @@ class Model
     private function setModelAttribute($model, $attribute, $type, $set)
     {
         $attr_id = R::getAll('SELECT id FROM attributes WHERE name = ? OR id = ?', [$attribute, $attribute])[0]['id'];
-        $attr = R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$model, $attr_id] );
+        $attr = R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $attr_id] );
         if($attr && $type){
             $attr->$type = $set;
             R::store($attr);

@@ -48,13 +48,15 @@ class PageController
 
     public function showModel(Request $request, Application $app, $shop, $model)
     {
+        $mdel = new Model($model);
         $modelAttr = Model::getModelAttributes($model);
         $modelGroups = Model::getGroups($model);
         return $app['twig']->render('page/model.twig', array(
             "modelAttr" => $modelAttr,
             "model" => Model::modelExists($model),
             "groups" => $modelGroups,
-            "shop" => $shop
+            "shop" => $shop,
+            "faces" => $mdel->getFaces()
         ));
     }
 

@@ -19,6 +19,7 @@ var mouse = new THREE.Vector2(),
 var objects = [];
 var embossing;
 var selectedFaces = [];
+var selFaces = [];
 
 module.exports = {
     init: function init(box, mesh, url, scene) {
@@ -35,40 +36,47 @@ module.exports = {
 
         var intersects = ray.intersectObject( mesh, true );
         if ( intersects.length > 0 ) {
-            DRAW = !DRAW;
-            controls.enabled = !controls.enabled;
+          // console.log(intersects[0].face);
+          coplanarFaces(mesh.geometry, 0.4, intersects[0].face);
+
+
+            // DRAW = !DRAW;
+            // controls.enabled = !controls.enabled;
+            // if(!DRAW) {
+            //   $('#config_faces').val(JSON.stringify(selectedFaces));
+            // }
         }
     },
     checkSelection: function checkSelection(event, camera, renderer, mesh){
-        if (DRAW) {
-            mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-
-            var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-            projector.unprojectVector( vector, camera );
-            var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-            var intersects = ray.intersectObject( mesh, true );
-            if ( intersects.length > 0 )
-            {
-                var test=-1;
-                selectedFaces.forEach( function(arrayItem)
-                {
-                    if(intersects[0].faceIndex==arrayItem.faceIndex && intersects[0].object.id==arrayItem.object.id){
-                        test=selectedFaces.indexOf(arrayItem);
-                    }
-                });
-                if(test>=0){
-                    intersects[ 0 ].face.color=new THREE.Color( 0x787878 );
-                    selectedFaces.splice(test, 1);
-                }
-                else{
-                    intersects[ 0 ].face.color.setHex( 0xff0000 );
-                    selectedFaces.push(intersects[0].face);
-                }
-                intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
-            }
-        }
+      // if (DRAW) {
+      //   mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
+      //   mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+      //
+      //   var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+      //   projector.unprojectVector( vector, camera );
+      //   var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+      //
+      //   var intersects = ray.intersectObject( mesh, true );
+      //   if ( intersects.length > 0 )
+      //   {
+      //       var test=-1;
+      //       selectedFaces.forEach( function(arrayItem)
+      //       {
+      //           if(intersects[0].faceIndex==arrayItem.faceIndex && intersects[0].object.id==arrayItem.object.id){
+      //               test=selectedFaces.indexOf(arrayItem);
+      //           }
+      //       });
+      //       if(test>=0){
+      //           intersects[ 0 ].face.color=new THREE.Color( 0x787878 );
+      //           selectedFaces.splice(test, 1);
+      //       }
+      //       else{
+      //           intersects[ 0 ].face.color.setHex( 0xff0000 );
+      //           selectedFaces.push(intersects[0].face);
+      //       }
+      //       intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
+      //   }
+      // }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
         if (SELECTED && MOVE) {
@@ -158,6 +166,36 @@ module.exports = {
     }
 
 };
+
+function coplanarFaces( geometry, thresholdAngle, clickedFace) {
+
+	thresholdAngle = ( thresholdAngle !== undefined ) ? thresholdAngle : 1;
+	var thresholdDot = Math.cos( THREE.Math.degToRad( thresholdAngle ) );
+  var edge = [ 0, 0 ], hash = {};
+  var sortFunction = function ( a, b ) {
+
+    return a - b;
+
+  };
+
+  var keys = [ 'a', 'b', 'c' ];
+
+  geometry.mergeVertices();
+  geometry.computeFaceNormals();
+
+  var vertices = geometry.vertices;
+  var faces = geometry.faces;
+
+  for ( var i = 0, l = faces.length; i < l; i ++ ) {
+      var face = faces[ i ];
+      if ((face.normal.x <= clickedFace.normal.x + thresholdAngle &&  face.normal.x >= clickedFace.normal.x - thresholdAngle) &&
+        (face.normal.y <= clickedFace.normal.y + thresholdAngle && face.normal.y >= clickedFace.normal.y - thresholdAngle) &&
+        (face.normal.z <= clickedFace.normal.z + thresholdAngle && face.normal.z >= clickedFace.normal.z - thresholdAngle)){
+          face.color.setHex( 0xff0000 );
+        }
+  }
+  geometry.colorsNeedUpdate = true;
+}
 
 function scale(mesh) {
     var size = calculate.size(mesh);

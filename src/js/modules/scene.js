@@ -16,7 +16,6 @@ var mouse = new THREE.Vector2();
 require('../vendor/STLLoader');
 require('../vendor/STLExport');
 
-
 var rendererContainer;
 var renderer;
 var scene;
@@ -24,7 +23,6 @@ var camera, controls;
 var mesh, width, height, depth, color;
 var contentWidth, contentHeight;
 var box, boxSize;
-var edges;
 
 var params = {
     height: 0.5,
@@ -136,17 +134,23 @@ function initGraphics(url) {
         mesh.receiveShadow = true;
         mesh.name = 'model';
 
-
+        // var faces = $.map(
+        //   JSON.parse($('#config_faces').val()),
+        //   function(el) {
+        //     return el;
+        //   });
+        // console.log(faces);
+        // for (var i = 0; i < faces.length; i++){
+        //   faces[i].color.setRGB( Math.random(),Math.random(), Math.random());
+        // }
 
         var volume = calculate.size(mesh);
         calculate.price(volume);
-
         scene.add(mesh);
+
         gui.init(boxSize, mesh, url, scene);
 
-        //$('#save').on('click', function(){
-        //    calculate.manufacturability(mesh);
-        //});
+        //TODO JSON export model and import JSON in configurator
 
     });
 }
@@ -194,6 +198,6 @@ document.getElementById('renderer').onmousedown = function(event) {
 document.getElementById('renderer').onmouseup = function(event) {
     gui.dropText(event, camera, renderer, mesh, controls);
     if ($('.admin-renderer').length > 0){
-        gui.toggleSelection(event, camera, renderer, mesh, controls);
+        // gui.toggleSelection(event, camera, renderer, mesh, controls);
     }
 };
