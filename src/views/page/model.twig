@@ -18,15 +18,6 @@
             <div id="renderer">
                 <a href="/shop/{{ shop }}"><i class="fa fa-chevron-left fa-2x renderer--back"></i></a>
                 <i class="fa fa-expand fa-2x renderer--expand"></i>
-                <div class="embedded--edit">
-                    <span class="embedded--option embedded--move"><i class="fa fa-arrows fa-2x"></i></span>
-                    <span class="embedded--option embedded--delete"><i class="fa fa-trash fa-2x"></i></span>
-                    <span class="embedded--option embedded--scale">
-                        <i class="fa fa-expand fa-2x "></i>
-                        <input type="range" class="embedded--scale--input" max="2" min="0.1" step="0.1">
-                    </span>
-
-                </div>
             </div>
             <ul class="embedding--list" style="position: absolute; bottom:0;"></ul>
         </div>
@@ -50,6 +41,7 @@
                             {% if attr.collection == 'Größe' %}
                                 <div class="size">
                             {% endif %}
+                              <!-- {{ attr.collection }} -->
                                 {% if attr.type == 'integer' %}
                                     <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
                                     <input type="number" id="{{ attr.name }}" min="{{ attr.min }}" max="{{ attr.max }}" value="{{ attr.initial }}">
@@ -57,12 +49,29 @@
                                     <label class="modelling--subtitle" for="{{ attr.name }}">{{ attr.name }}</label>
                                     <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
                                 {% elseif attr.type == 'form' %}
-                                    <i class="fa fa-{{ attr.name }} fa-2x" data-form="{{ attr.name }}"></i>
+                                    <i class="icon icon--{{ attr.name }}" data-form="{{ attr.name }}"></i>
                                 {% endif %}
                             {% if attr.collection == 'Größe' %}
+                                  <p>
+                                    in mm
+                                  </p>
                                 </div>
+                            {% elseif attr.collection == 'Größe'%}
                             {% endif %}
                         {% endfor %}
+                        {% if group.collection == 'Einprägung'%}
+                          <div class="primary callout">
+                            <p>
+                              Hier kann ein Text definiert und per Klick auf dem Objekt platziert werden
+                            </p>
+                          </div
+                        {% elseif group.collection == 'Formen'%}
+                          <div class="primary callout">
+                            <p>
+                              Hier können Objekte ausgewählt werden, um sie per Klick auf dem Modell zu platzieren.
+                            </p>
+                          </div>
+                        {% endif %}
                     </div>
                 </li>
             {% endfor %}
@@ -70,7 +79,7 @@
             </ul>
 
             <input type="hidden" name="config_faces" id="config_faces" value="{{ faces }}">
-            <button id="save" class="button">Save</button>
+            <button id="save" class="button">In den Einkaufswagen</button>
         </div>
 
 

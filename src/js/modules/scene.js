@@ -89,16 +89,13 @@ function initGraphics(url) {
     loader.load(url , function (geometry) {
         geometry = new THREE.Geometry().fromBufferGeometry(geometry);
         var material;
-        if (geometry.hasColors) {
-            material = new THREE.MeshPhongMaterial({ opacity: geometry.alpha, vertexColors: THREE.FaceColors });
-        } else {
-            material = new THREE.MeshPhongMaterial({
-                color: 0x787878,
-                specular: 0x111111,
-                shininess: 200,
-                vertexColors: THREE.FaceColors
-            });
-        }
+        material = new THREE.MeshPhongMaterial({
+            color: 0x787878,
+            specular: 0x111111,
+            shininess: 200,
+            vertexColors: THREE.FaceColors
+        });
+
 
         mesh = new THREE.Mesh(geometry, material);
 
@@ -133,16 +130,6 @@ function initGraphics(url) {
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         mesh.name = 'model';
-
-        // var faces = $.map(
-        //   JSON.parse($('#config_faces').val()),
-        //   function(el) {
-        //     return el;
-        //   });
-        // console.log(faces);
-        // for (var i = 0; i < faces.length; i++){
-        //   faces[i].color.setRGB( Math.random(),Math.random(), Math.random());
-        // }
 
         var volume = calculate.size(mesh);
         calculate.price(volume);
@@ -183,9 +170,6 @@ function render(t) {
 
 document.getElementById('renderer').onmousemove = function(event) {
     gui.moveText(event, camera, renderer, mesh, scene);
-    if ($('.admin-renderer').length > 0){
-        gui.checkSelection(event, camera, renderer, mesh);
-    }
 };
 
 document.getElementById('renderer').onmousedown = function(event) {
@@ -197,7 +181,5 @@ document.getElementById('renderer').onmousedown = function(event) {
 
 document.getElementById('renderer').onmouseup = function(event) {
     gui.dropText(event, camera, renderer, mesh, controls);
-    if ($('.admin-renderer').length > 0){
-        // gui.toggleSelection(event, camera, renderer, mesh, controls);
-    }
+
 };

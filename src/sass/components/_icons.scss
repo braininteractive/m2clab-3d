@@ -1,0 +1,24 @@
+.icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  height: 40px;
+  width: 50px;
+
+  &--circle {
+    background-image: url('../images/circle.png');
+  }
+
+  &--cube {
+    background-image: url('../images/cube.png');
+  }
+
+  &--triangle {
+    background-image: url('../images/triangle.png');
+  }
+
+  &--star {
+    background-image: url('../images/star.png');
+  }
+
+}

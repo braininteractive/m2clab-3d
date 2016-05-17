@@ -18,7 +18,6 @@ var mouse = new THREE.Vector2(),
     projector = new THREE.Projector();
 var objects = [];
 var embossing;
-var selectedFaces = [];
 var selFaces = [];
 
 module.exports = {
@@ -38,45 +37,8 @@ module.exports = {
         if ( intersects.length > 0 ) {
           // console.log(intersects[0].face);
           coplanarFaces(mesh.geometry, 0.4, intersects[0].face);
-
-
-            // DRAW = !DRAW;
-            // controls.enabled = !controls.enabled;
-            // if(!DRAW) {
-            //   $('#config_faces').val(JSON.stringify(selectedFaces));
-            // }
+          $('#config_faces').val(JSON.stringify(selFaces));
         }
-    },
-    checkSelection: function checkSelection(event, camera, renderer, mesh){
-      // if (DRAW) {
-      //   mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
-      //   mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-      //
-      //   var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-      //   projector.unprojectVector( vector, camera );
-      //   var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-      //
-      //   var intersects = ray.intersectObject( mesh, true );
-      //   if ( intersects.length > 0 )
-      //   {
-      //       var test=-1;
-      //       selectedFaces.forEach( function(arrayItem)
-      //       {
-      //           if(intersects[0].faceIndex==arrayItem.faceIndex && intersects[0].object.id==arrayItem.object.id){
-      //               test=selectedFaces.indexOf(arrayItem);
-      //           }
-      //       });
-      //       if(test>=0){
-      //           intersects[ 0 ].face.color=new THREE.Color( 0x787878 );
-      //           selectedFaces.splice(test, 1);
-      //       }
-      //       else{
-      //           intersects[ 0 ].face.color.setHex( 0xff0000 );
-      //           selectedFaces.push(intersects[0].face);
-      //       }
-      //       intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
-      //   }
-      // }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
         if (SELECTED && MOVE) {
@@ -93,7 +55,8 @@ module.exports = {
                 if (intersects.length > 0) {
                     text.position.set(0, 0, 0);
                     text.lookAt(intersects[0].face.normal);
-                    text.position.copy(intersects[0].point);
+                    text.rotateY(- Math.PI / 2);
+                    text.position.copy(intersects[0].point.sub(offset));
                 }
             }
         }
@@ -109,7 +72,7 @@ module.exports = {
             var intersects = raycaster.intersectObjects(objects, true);
 
             if (intersects.length > 0 && !SELECTED) {
-                $(".embedded--edit").css({ top: event.pageY, left: event.pageX, display: "block" });
+                $("[data-uuid="+ text.name +"]").css({ top: event.pageY, left: event.pageX, display: "block" });
                 controls.enabled = false;
                 SELECTED = intersects[0].object;
                 SELECTED.material.color.set(16711680);
@@ -125,16 +88,14 @@ module.exports = {
                 SELECTED = null;
             }
 
-            $('.embedded--edit').on('click', '.embedded--move', function(){
+            $('[data-uuid='+ text.name +']').on('click', '.embedded--move', function(){
                 MOVE = true;
                 $(".embedded--edit").hide();
                 $(".embedded--scale--input").hide();
-                moveText();
-
             });
             $('.embedded--edit').on('click', '.embedded--delete', function(){
                 $(".embedded--edit").hide();
-                $(".embedded--scale--input").hide();
+                $("[data-uuid="+ text.name +"] .embedded--scale--input").hide();
                 scene.remove(SELECTED);
                 controls.enabled = true;
                 objects = $.grep(objects, function(e){
@@ -142,12 +103,15 @@ module.exports = {
                 });
                 SELECTED = null;
             });
-            $('.embedded--edit').on('click', '.embedded--scale', function(){
+            $('[data-uuid='+ text.name +']').on('click', '.embedded--scale', function(){
                 $(".embedded--scale--input").toggle();
             });
-            $(".embedded--scale--input").on('change', function(){
-                var scaleValue = $(".embedded--scale--input").val();
+            $("[data-uuid="+ text.name +"] .embedded--scale--input").on('change', function(){
+                var scaleValue = $("[data-uuid="+ text.name +"] .embedded--scale--input").val();
                 SELECTED.scale.set(scaleValue, scaleValue, scaleValue);
+            });
+            $('[data-uuid='+ text.name +']').on('click', '.embedded--rotate', function(){
+              text.rotateZ(- Math.PI / 2);
             });
         } else {}
     },
@@ -170,15 +134,6 @@ module.exports = {
 function coplanarFaces( geometry, thresholdAngle, clickedFace) {
 
 	thresholdAngle = ( thresholdAngle !== undefined ) ? thresholdAngle : 1;
-	var thresholdDot = Math.cos( THREE.Math.degToRad( thresholdAngle ) );
-  var edge = [ 0, 0 ], hash = {};
-  var sortFunction = function ( a, b ) {
-
-    return a - b;
-
-  };
-
-  var keys = [ 'a', 'b', 'c' ];
 
   geometry.mergeVertices();
   geometry.computeFaceNormals();
@@ -186,17 +141,35 @@ function coplanarFaces( geometry, thresholdAngle, clickedFace) {
   var vertices = geometry.vertices;
   var faces = geometry.faces;
 
+  var temp = [];
+
   for ( var i = 0, l = faces.length; i < l; i ++ ) {
       var face = faces[ i ];
-      if ((face.normal.x <= clickedFace.normal.x + thresholdAngle &&  face.normal.x >= clickedFace.normal.x - thresholdAngle) &&
-        (face.normal.y <= clickedFace.normal.y + thresholdAngle && face.normal.y >= clickedFace.normal.y - thresholdAngle) &&
-        (face.normal.z <= clickedFace.normal.z + thresholdAngle && face.normal.z >= clickedFace.normal.z - thresholdAngle)){
-          face.color.setHex( 0xff0000 );
-        }
+      if ((face.normal.x >= clickedFace.normal.x + thresholdAngle) || (face.normal.x <= clickedFace.normal.x - thresholdAngle) || (face.normal.y >= clickedFace.normal.y + thresholdAngle) || (face.normal.y <= clickedFace.normal.y - thresholdAngle)|| (face.normal.z >= clickedFace.normal.z + thresholdAngle)|| (face.normal.z <= clickedFace.normal.z - thresholdAngle)) {
+          return;
+      }
+      temp.push(face);
+  }
+
+  for (var j = 0, s = temp.length; j < l; j++) {
+    checkSelection(temp[s], thresholdAngle, clickedFace);
   }
   geometry.colorsNeedUpdate = true;
 }
 
+function checkSelection(face, thresholdAngle, clickedFace){
+
+  if ($.inArray(face, selFaces) !== -1) {
+    face.color.setHex( 0x787878 );
+    var index = selFaces.indexOf(face);
+    if (index > -1) {
+        selFaces.splice(index, 1);
+    }
+    return;
+  }
+  face.color.setHex( 0xff0000 );
+  selFaces.push(face);
+}
 function scale(mesh) {
     var size = calculate.size(mesh);
     calculate.price(size);
@@ -275,13 +248,13 @@ function addForm(type, scene) {
     var form;
 
     if (type == "text") {
-        embossing = true;
         form = new THREE.TextGeometry($("#text").val(), {
-            size: $("#fontSize").val(),
+            size: 2,
             height: 1,
             curveSegments: 2,
             font: "Roboto Black"
         });
+        embossing = true;
     } else if (type == "cube") {
         form = new THREE.CubeGeometry(2, 2, 2);
     } else if (type == "circle") {
@@ -327,15 +300,16 @@ function addForm(type, scene) {
     });
 
     if (type == "text" && embossing) {
-        var posX = text.position.x;
-        var posY = text.position.y;
-        var posZ = text.position.z;
-        scene.remove(text);
-        text = new THREE.Mesh(form, Material);
+      scene.remove(text);
+      text = new THREE.Mesh(form, Material);
+      var posX = text.position.x;
+      var posY = text.position.y;
+      var posZ = text.position.z;
 
-        text.position.x = posX;
-        text.position.y = posY;
-        text.position.z = posZ;
+
+      text.position.x = posX;
+      text.position.y = posY;
+      text.position.z = posZ;
     } else {
         text = new THREE.Mesh(form, Material);
         text.position.x = centerOffset;
@@ -346,6 +320,7 @@ function addForm(type, scene) {
         MOVE = true;
     }
     text.name = text.uuid;
+    $('<div class="embedded--edit" data-uuid="' + text.uuid + '"><span class="embedded--option embedded--move"><i class="fa fa-arrows fa-2x"></i></span><span class="embedded--option embedded--delete"><i class="fa fa-trash fa-2x"></i></span><span class="embedded--option embedded--rotate"><i class="fa fa-rotate-right fa-2x"></i></span><span class="embedded--option embedded--scale"><i class="fa fa-expand fa-2x "></i><input type="range" class="embedded--scale--input" max="2" min="0.1" step="0.1"></span></div>').appendTo($('#renderer'));
     scene.add(text);
     objects.push(text);
 

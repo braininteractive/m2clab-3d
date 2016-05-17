@@ -23,4 +23,8 @@
 
 .button {
   background-color: $color--lila;
+
+  &:hover {
+    background-color: darken($color--lila, 10%);
+  }
 }

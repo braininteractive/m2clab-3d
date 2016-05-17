@@ -30,14 +30,18 @@
     transition: width 2s;
   }
   &--move{
-    right: 20px;
+    right: 30px;
   }
   &--delete{
     bottom: 20px;
     right: -20px;
   }
+  &--rotate{
+    bottom: -100px;
+    right: -20px;
+  }
   &--scale{
-    left: 20px;
+    left: 30px;
     &--input{
       display: none;
     }
