@@ -125,7 +125,7 @@ class PageController
 
         return $app['twig']->render('page/admin.twig', array(
             "shop" => $shop,
-            "models" => $models_attr,
+            "models" => $models,
             "form" => $form->createView(),
             "shop_form" => $shop_form->createView(),
             "shop_image" => $subshop->getSavedImage($shop),

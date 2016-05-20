@@ -68,19 +68,21 @@
             <input type="text" class="search" placeholder="search">
             <table>
                 <thead>
-                    <th class="sort" width="100">Modelname</th>
-                    <th width="200">Beschreibung</th>
-                    <th width="10">Bearbeiten</th>
+                  <th width="50"></th>
+                  <th class="sort" width="100">Modelname</th>
+                  <th width="200">Beschreibung</th>
+                  <th width="10">Bearbeiten</th>
                 </thead>
                 <tbody class="list">
-                {% for i, description in models %}
+                {% for model in models %}
                     <tr>
-                        <td class="model--name"><a href="/admin/{{ shop }}/{{ i }}/edit">{{ i }}</a></td>
-                        <td class="model--description">{{ description }}</td>
-                        <td>
-                            <a href="/admin/{{ shop }}/{{ i }}/edit"><i class="fa fa-pencil fa-2x" ></i></a>
-                            <i class="fa fa-trash-o fa-2x" data-delete="{{ i }}" data-url="delete/{{ shop }}/{{ i }}"></i>
-                        </td>
+                      <td><div class="model--thumb" style="background-image: url('{{ model.image }}')"></div></td>
+                      <td class="model--name"><a href="/admin/{{ shop }}/{{ model.name }}/edit">{{ model.name }}</a></td>
+                      <td class="model--description">{{ model.description }}</td>
+                      <td>
+                          <a href="/admin/{{ shop }}/{{ model.name }}/edit"><i class="fa fa-pencil fa-2x" ></i></a>
+                          <i class="fa fa-trash-o fa-2x" data-delete="{{ model.name }}" data-url="delete/{{ model.name }}/{{ i }}"></i>
+                      </td>
                     </tr>
                 {% endfor %}
                 </tbody>
