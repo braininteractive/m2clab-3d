@@ -48,7 +48,7 @@ class PageController
 
     public function showModel(Request $request, Application $app, $shop, $model)
     {
-        $mdel = new Model($model);
+        $mdel = new Model(Model::getModelId($model));
         $modelAttr = Model::getModelAttributes($model);
         $modelGroups = Model::getGroups($model);
         return $app['twig']->render('page/model.twig', array(
@@ -115,7 +115,8 @@ class PageController
             $image->move('.' . $image_dir, $image->getClientOriginalName());
 
             $id = $model->store($dir . '/' . $filename, $shop, $image_dir . '/' . $image->getClientOriginalName());
-            return $this->showModelConfig($request, $app, $shop, Model::getModelName($id));
+
+            return $app->redirect('/admin/' . $shop .'/'.$model->getModelName($id). '/edit');
 
         }elseif($form->isSubmitted() && !$form->isValid()){
             var_dump($form->getErrors(true));
@@ -140,21 +141,23 @@ class PageController
 
     public function showModelConfig(Request $request, Application $app, $shop, $model)
     {
-        $mdel = new Model($model);
-        $form = $mdel->createConfigForm($app);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $app->redirect('/admin/' . $shop);
-        }elseif($form->isSubmitted() && !$form->isValid()){
-            var_dump($form->getErrors(true));
-            die();
-        }
+      $var_type = gettype($model);
+      if ($var_type === 'string'){$model = Model::getModelId($model);}
+      $mdel = new Model($model);
+      $form = $mdel->createConfigForm($app);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+        return $app->redirect('/admin/' . $shop);
+      }elseif($form->isSubmitted() && !$form->isValid()){
+          var_dump($form->getErrors(true));
+          die();
+      }
 
-        return $app['twig']->render('page/config.twig', array(
-            "model" => Model::modelExists($model),
-            "form" => $form->createView(),
-            "shop" => $shop
-        ));
+      return $app['twig']->render('page/config.twig', array(
+          "model" => Model::modelExists($mdel->id),
+          "form" => $form->createView(),
+          "shop" => $shop
+      ));
     }
 
     public function showStyleguide(Request $request, Application $app)

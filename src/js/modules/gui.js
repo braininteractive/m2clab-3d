@@ -19,6 +19,7 @@ var mouse = new THREE.Vector2(),
 var objects = [];
 var embossing;
 var selFaces = [];
+var rotation = 0;
 
 module.exports = {
     init: function init(box, mesh, url, scene) {
@@ -56,6 +57,7 @@ module.exports = {
                     text.position.set(0, 0, 0);
                     text.lookAt(intersects[0].face.normal);
                     text.rotateY(- Math.PI / 2);
+                    text.rotateZ(rotation);
                     text.position.copy(intersects[0].point.sub(offset));
                 }
             }
@@ -72,10 +74,12 @@ module.exports = {
             var intersects = raycaster.intersectObjects(objects, true);
 
             if (intersects.length > 0 && !SELECTED) {
-                $("[data-uuid="+ text.name +"]").css({ top: event.pageY, left: event.pageX, display: "block" });
-                controls.enabled = false;
-                SELECTED = intersects[0].object;
-                SELECTED.material.color.set(16711680);
+
+
+              controls.enabled = false;
+              SELECTED = intersects[0].object;
+              SELECTED.material.color.set(16711680);
+              $("[data-uuid="+ SELECTED.name +"]").css({ top: event.pageY, left: event.pageX, display: "block" });
             }
 
             if (!intersects.length && SELECTED && $('.embedded--edit:hover').length === 0) {
@@ -112,6 +116,7 @@ module.exports = {
             });
             $('[data-uuid='+ text.name +']').on('click', '.embedded--rotate', function(){
               text.rotateZ(- Math.PI / 2);
+              rotation = text.rotation.z;
             });
         } else {}
     },

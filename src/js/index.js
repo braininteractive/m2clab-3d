@@ -83,6 +83,9 @@ var Reveal = require('foundation.reveal');
 
     });
 
+
+    if($( '#config_title' ).val() === 'new'){$( '#config_title' ).val('');}
+
     $( '.inputfile' ).each( function()
     {
         var $input	 = $( this ),

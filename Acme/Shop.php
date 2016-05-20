@@ -80,7 +80,7 @@ class Shop
         return R::load('shops',$shopID)->logo;
     }
 
-    static function getShops($shop)
+    static function getShops()
     {
         return R::getAll('SELECT name, description, image FROM shops');
     }

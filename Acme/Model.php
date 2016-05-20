@@ -18,8 +18,8 @@ class Model
 
     function __construct($mdel) {
         if($mdel){
-            $this->name = $mdel;
-            $this->id = $this->getModelId($mdel);
+            $this->id = $mdel;
+            $this->name = $this->getModelName($mdel);
         }
         R::ext('xdispense', function( $type ){
             return R::getRedBean()->dispense( $type );
@@ -30,9 +30,9 @@ class Model
         return $this->name;
     }
     public function setTitle($title){
-        $mdl = R::load('models',$this->id);
-        $mdl->name = $title;
-        R::store($mdl);
+      $mdl = R::load('models',$this->id);
+      $mdl->name = $title;
+      R::store($mdl);
     }
     public function getDescription(){
         return $this->getModelDescription($this->name);
@@ -42,61 +42,65 @@ class Model
         $mdl->description = $description;
         R::store($mdl);
     }
-    public function getMinWidth(){
-        return $this->getModelAttribute($this->name, 'width', 'min');
-    }
-    public function setMinWidth($minWidth)
+
+    static function getModelAttributes($model)
     {
-        $this->setModelAttribute($this->name, 'width', 'min', $minWidth);
+        return R::getAll('SELECT a.name, a.type, ag.name collection, r.initial, r.price, r.max, r.min FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id INNER JOIN attr_groups ag ON ag.id = a.group_id WHERE m.name = ? AND Coalesce(m.deleted, 0) = 0', [$model]);
     }
-    public function getMaxWidth(){
-        return $this->getModelAttribute($this->name, 'width', 'max');
-    }
-    public function setMaxWidth($maxWidth)
+    private function setModelAttribute($model, $attribute, $type = null, $set = null)
     {
-        $this->setModelAttribute($this->name, 'width', 'max', $maxWidth);
+        $attr_id = R::getAll('SELECT id FROM attributes WHERE name = ? OR id = ?', [$attribute, $attribute])[0]['id'];
+        $attr = R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $attr_id] );
+        if($attr && $type){
+            $attr->$type = $set;
+            R::store($attr);
+        }elseif($attr) {
+
+        }else
+        {
+            $attr = R::xdispense('rel_model_attr');
+            $attr->model_id = $this->id;
+            $attr->attr_id = $attr_id;
+            if($type){
+                $attr->$type = $set;
+            }
+            R::store($attr);
+        }
     }
-    public function getMinHeight(){
-        return $this->getModelAttribute($this->name, 'height', 'min');
-    }
-    public function setMinHeight($minHeight)
+    static function getModelAttribute($model, $attribute, $type)
     {
-        $this->setModelAttribute($this->name, 'height', 'min', $minHeight);
+        if ($type){
+            return R::getRow('SELECT '. $type .' FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id  WHERE m.name = ? AND a.name = ?', [$model, $attribute])[$type];
+        }else{
+            $attr_id = self::attrExists($attribute)->id;
+            $model_id = self::modelExists($model)->id;
+            return R::findOne('rel_model_attr', 'attr_id = ? AND model_id = ?', [$attr_id, $model_id]);
+        }
     }
-    public function getMaxHeight(){
-        return $this->getModelAttribute($this->name, 'height', 'max');
-    }
-    public function setMaxHeight($maxHeight)
-    {
-        $this->setModelAttribute($this->name, 'height', 'max', $maxHeight);
-    }
-    public function getMinDepth(){
-        return $this->getModelAttribute($this->name, 'depth', 'min');
-    }
-    public function setMinDepth($minDepth)
-    {
-        $this->setModelAttribute($this->name, 'depth', 'min', $minDepth);
-    }
-    public function getMaxDepth(){
-        return $this->getModelAttribute($this->name, 'depth', 'max');
-    }
-    public function setMaxDepth($maxDepth)
-    {
-        $this->setModelAttribute($this->name, 'depth', 'max', $maxDepth);
-    }
-    public function getFaces(){
-        return $this->getModelAttribute($this->name, 'faces', 'initial');
-    }
-    public function setFaces($faces)
-    {
-        $this->setModelAttribute($this->name, 'faces', 'initial', $faces);
-    }
-    public function getEmbedding()
-    {
-        return !empty($this->getModelAttribute($this->name, 'text'));
-    }
-    public function setEmbedding($selection)
-    {
+
+    public function getMinWidth(){ return $this->getModelAttribute($this->name, 'width', 'min');}
+    public function setMinWidth($minWidth){$this->setModelAttribute($this->name, 'width', 'min', $minWidth);}
+
+    public function getMaxWidth(){return $this->getModelAttribute($this->name, 'width', 'max');}
+    public function setMaxWidth($maxWidth){$this->setModelAttribute($this->name, 'width', 'max', $maxWidth);}
+
+    public function getMinHeight(){return $this->getModelAttribute($this->name, 'height', 'min');}
+    public function setMinHeight($minHeight){$this->setModelAttribute($this->name, 'height', 'min', $minHeight);}
+
+    public function getMaxHeight(){return $this->getModelAttribute($this->name, 'height', 'max');}
+    public function setMaxHeight($maxHeight){$this->setModelAttribute($this->name, 'height', 'max', $maxHeight);}
+
+    public function getMinDepth(){return $this->getModelAttribute($this->name, 'depth', 'min');}
+    public function setMinDepth($minDepth){$this->setModelAttribute($this->name, 'depth', 'min', $minDepth);}
+
+    public function getMaxDepth(){return $this->getModelAttribute($this->name, 'depth', 'max');}
+    public function setMaxDepth($maxDepth){$this->setModelAttribute($this->name, 'depth', 'max', $maxDepth);}
+
+    public function getFaces(){return $this->getModelAttribute($this->name, 'faces', 'initial');}
+    public function setFaces($faces){$this->setModelAttribute($this->name, 'faces', 'initial', $faces);}
+
+    public function getEmbedding(){return !empty($this->getModelAttribute($this->name, 'text', 'attr_id'));}
+    public function setEmbedding($selection){
         if ($selection){
             $this->setModelAttribute($this->id, 'text');
         } else {
@@ -136,43 +140,14 @@ class Model
 
     static function getModelName($model)
     {
-        return R::getAll('SELECT name FROM models WHERE id = ?', [$model])[0]['name'];
-    }
-
-    static function getModelAttributes($model)
-    {
-        return R::getAll('SELECT a.name, a.type, ag.name collection, r.initial, r.price, r.max, r.min FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id INNER JOIN attr_groups ag ON ag.id = a.group_id WHERE m.name = ? AND Coalesce(m.deleted, 0) = 0', [$model]);
-    }
-    private function setModelAttribute($model, $attribute, $type, $set)
-    {
-        $attr_id = R::getAll('SELECT id FROM attributes WHERE name = ? OR id = ?', [$attribute, $attribute])[0]['id'];
-        $attr = R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $attr_id] );
-        if($attr && $type){
-            $attr->$type = $set;
-            R::store($attr);
-        }elseif($attr) {
-
-        }else
-        {
-            $attr = R::xdispense('rel_model_attr');
-            $attr->model_id = $this->id;
-            $attr->attr_id = $attr_id;
-            if($type){
-                $attr->$type = $set;
-            }
-            R::store($attr);
+        $temp = R::findOne('models', 'id = ?', [$model]);
+        if(isset($temp)){
+          return $temp->name;
         }
     }
-    static function getModelAttribute($model, $attribute, $type)
-    {
-        if ($type){
-            return R::getAll('SELECT '. $type .' FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id  WHERE m.name = ? AND a.name = ?', [$model, $attribute])[0][$type];
-        }else{
-            $attr_id = self::attrExists($attribute)->id;
-            $model_id = self::modelExists($model)->id;
-            return R::findOne('rel_model_attr', 'attr_id = ? AND model_id = ?', [$attr_id, $model_id]);
-        }
-    }
+
+
+
     static function getGroups($model)
     {
         return R::getAll('SELECT ag.name collection FROM models m INNER JOIN rel_model_attr r ON m.id = r.model_id INNER JOIN attributes a ON a.id = r.attr_id INNER JOIN attr_groups ag ON ag.id = a.group_id WHERE m.name = ? AND Coalesce(m.deleted, 0) = 0 GROUP BY ag.name ORDER BY ag.id', [$model]);
@@ -180,7 +155,10 @@ class Model
 
     static function getModelDescription($model)
     {
-        return R::getAll('SELECT description FROM models WHERE name = ? OR id = ?', [$model, $model])[0]['description'];
+      $temp = R::findOne('models', 'name = ? OR id = ?', [$model, $model]);
+      if(isset($temp)){
+        return $temp->description;
+      }
     }
 
     static function deleteModel($model)
@@ -199,7 +177,10 @@ class Model
     }
     static function getModelId($model)
     {
-        return R::getAll('SELECT id FROM models WHERE name = ?', [$model])[0]['id'];
+        $temp = R::findOne('models', 'name = ?', [$model]);
+        if(isset($temp)){
+          return $temp->id;
+        }
     }
 
     public function createForm(\Silex\Application $app)
@@ -213,7 +194,7 @@ class Model
     }
 
 
-    public function createConfigForm(\Silex\Application $app, $model)
+    public function createConfigForm(\Silex\Application $app)
     {
         $choices = $this->getForms();
         $formBuilder = $app['form.factory']->createNamedBuilder('config', 'form', $this);
@@ -243,7 +224,7 @@ class Model
     {
         $shopID = Shop::existsShop($shop)->id;
         $model = R::dispense('models');
-        $model->name = $this->name;
+        $model->name = 'new';
         $model->url = $filePath;
         $model->shop_id = $shopID;
         $model->image = $imagePath;
