@@ -25,6 +25,14 @@ module.exports = {
     init: function init(box, mesh, url, scene) {
         mesh.scale.set(params.width, params.height, params.depth);
         buildGUI(mesh, scene);
+        $('#config_forms label').each(function(){
+          var _self = $(this);
+          _self.html("<i class='icon icon--" + _self.text() + "'></i>" );
+        });
+        $('#config_colors label').each(function(){
+          var _self = $(this);
+          _self.html("<i class='color' style='background-color:" + _self.text() + ";'></i>" );
+        });
     },
     toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
         mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
