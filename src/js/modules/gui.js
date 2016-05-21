@@ -11,7 +11,7 @@ var boxSize;
 var attributes;
 var configs = {};
 var text;
-var SELECTED, MOVE, DRAW;
+var SELECTED, MOVE, DRAW, MARK;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(),
     offset = new THREE.Vector3(),
@@ -20,7 +20,7 @@ var objects = [];
 var embossing;
 var selFaces = [];
 var rotation = 0;
-
+var allowedFaces = null;
 module.exports = {
     init: function init(box, mesh, url, scene) {
         mesh.scale.set(params.width, params.height, params.depth);
@@ -33,8 +33,10 @@ module.exports = {
           var _self = $(this);
           _self.html("<i class='color' style='background-color:" + _self.text() + ";'></i>" );
         });
+        allowedFaces = JSON.parse($('#config_faces').val());
     },
     toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
+      if (MARK){
         mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
         mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
         if (typeof event.targetTouches !== 'undefined' && event.targetTouches.length == 1) {
@@ -51,6 +53,7 @@ module.exports = {
           coplanarFaces(mesh.geometry, 0.4, intersects[0].face);
           $('#config_faces').val(JSON.stringify(selFaces));
         }
+      }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
         if (SELECTED && MOVE) {
@@ -65,16 +68,31 @@ module.exports = {
 
             var intersects = raycaster.intersectObject(mesh, true);
             if (intersects.length > 0) {
-
+              // var inside = false;
+              // if(allowedFaces){
+              //   console.log(allowedFaces[]);
+              //   console.log(intersects[0].face);
+              //   for(var k = 0; k < allowedFaces.length; k++){
+              //     if(intersects[0].face.a == allowedFaces[k].a){
+              //       if(intersects[0].face.b == allowedFaces[k].b){
+              //         if(intersects[0].face.c == allowedFaces[k].c){
+              //           inside = true;
+              //         }
+              //       }
+              //     }
+              //   }
+              // }
+              // if(allowedFaces === null || inside){
                 SELECTED.position.copy(intersects[0].point.sub(offset));
                 text.position.set(mouse.x, mouse.y, 0);
                 if (intersects.length > 0) {
-                    text.position.set(0, 0, 0);
-                    text.lookAt(intersects[0].face.normal);
-                    text.rotateY(- Math.PI / 2);
-                    text.rotateZ(rotation);
-                    text.position.copy(intersects[0].point.sub(offset));
+                  text.position.set(0, 0, 0);
+                  text.lookAt(intersects[0].face.normal);
+                  text.rotateY(- Math.PI / 2);
+                  text.rotateZ(rotation);
+                  text.position.copy(intersects[0].point.sub(offset));
                 }
+              // }
             }
         }
     },
@@ -163,19 +181,18 @@ function coplanarFaces( geometry, thresholdAngle, clickedFace) {
 
   var vertices = geometry.vertices;
   var faces = geometry.faces;
-
   var temp = [];
-
-  for ( var i = 0, l = faces.length; i < l; i ++ ) {
-      var face = faces[ i ];
-      if ((face.normal.x >= clickedFace.normal.x + thresholdAngle) || (face.normal.x <= clickedFace.normal.x - thresholdAngle) || (face.normal.y >= clickedFace.normal.y + thresholdAngle) || (face.normal.y <= clickedFace.normal.y - thresholdAngle)|| (face.normal.z >= clickedFace.normal.z + thresholdAngle)|| (face.normal.z <= clickedFace.normal.z - thresholdAngle)) {
-          return;
-      }
-      temp.push(face);
+  for ( var i = 0; i < faces.length; i ++ ) {
+    var face = faces[ i ];
+    if ((face.normal.x >= clickedFace.normal.x + thresholdAngle) || (face.normal.x <= clickedFace.normal.x - thresholdAngle) || (face.normal.y >= clickedFace.normal.y + thresholdAngle) || (face.normal.y <= clickedFace.normal.y - thresholdAngle)|| (face.normal.z >= clickedFace.normal.z + thresholdAngle) || (face.normal.z <= clickedFace.normal.z - thresholdAngle)) {
+        continue;
+    }
+    temp.push(face);
   }
 
-  for (var j = 0, s = temp.length; j < l; j++) {
-    checkSelection(temp[s], thresholdAngle, clickedFace);
+
+  for (var j = 0, s = temp.length; j < s; j++) {
+    checkSelection(temp[j], thresholdAngle, clickedFace);
   }
   geometry.colorsNeedUpdate = true;
 }
@@ -268,6 +285,11 @@ function buildGUI(mesh, scene) {
         var colorObject = new THREE.Color(colorValue);
         mesh.material.color = colorObject;
         params.color = colorObject;
+    });
+
+    $('[data-mark]').on('click', function(){
+      $(this).toggleClass('active');
+      MARK = !MARK;
     });
 
 }

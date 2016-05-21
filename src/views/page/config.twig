@@ -91,10 +91,23 @@
                     {{ form_widget(form.forms, {'attr': {} }) }}
                 </div>
             </li>
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">Flächen markieren</a>
+                <div class="accordion-content" data-tab-content>
+                  <i class="fa fa-pencil fa-2x" data-mark></i>
+                  {{ form_widget(form.faces, {'attr': {'class': 'hidden'} }) }}
+                  <div class="primary callout">
+                    <p>
+                      Hier können Flächen markiert werden auf welchen später Objekte platziert werden können.
+                      Erst Stift auswählen dann markieren
+                    </p>
+                  </div
+                </div>
+            </li>
         </ul>
           {{ form_widget(form.faces, {'attr': {} }) }}
         <input type="submit" class="button" value="Save">
-        <div id="faces" style="display: none;"></div>
+        <div id="faces" style="display: none;">{{ faces }}</div>
     </div>
     {{ form_end(form) }}
 

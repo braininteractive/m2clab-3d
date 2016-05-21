@@ -238,7 +238,7 @@ class Model
             ->add('minDepth', 'number', array('required' => false))
             ->add('maxDepth', 'number', array('required' => false))
             ->add('embedding', 'checkbox', array('required' => false))
-            ->add('faces', 'hidden', array('required' => false))
+            ->add('faces', 'textarea', array('required' => false))
             ->add('colors', 'choice', array(
                 'multiple' => true,
                 'expanded' => true,

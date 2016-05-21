@@ -78,3 +78,15 @@
     border: 2px solid blue;
   }
 }
+
+.hidden{
+  display: none;
+}
+
+[data-mark] {
+  padding: 5px;
+  &.active{
+    background-color: #e6e6e6;
+    border: 2px solid blue;
+  }
+}
