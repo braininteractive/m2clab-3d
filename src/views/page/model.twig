@@ -9,7 +9,7 @@
                 height: 0.5,
                 width: 0.5,
                 depth: 0.5,
-                color: '#222222',
+                color: 'rgb(120,120,120)',
                 positionY: -0.25,
                 text: 'Test'
             };
@@ -50,6 +50,8 @@
                                     <input type="text" id="{{ attr.name }}" value="{{ attr.initial }}">
                                 {% elseif attr.type == 'form' %}
                                     <i class="icon icon--{{ attr.name }}" data-form="{{ attr.name }}"></i>
+                                {% elseif attr.type == 'color' %}
+                                    <i class="color color--{{ attr.name }}" data-color="{{ attr.name }}" style="background-color:{{ attr.name }};"></i>
                                 {% endif %}
                             {% if attr.collection == 'Größe' %}
                                   <p>

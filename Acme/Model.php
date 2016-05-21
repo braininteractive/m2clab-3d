@@ -116,7 +116,24 @@ class Model
         }
         return $array;
     }
+    public function getColors(){
+        $all_colors =  R::getAll('SELECT id, name FROM attributes WHERE group_id = 3', []);
+        $array = array();
+        foreach ($all_colors as $color){
+            $array[$color['id']] = $color['name'];
+        }
+        return $array;
+    }
     public function getFormsData($attr){
+        $array = array();
+        foreach($attr as $key => $value){
+            if (R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $key] )){
+                $array[] = $key;
+            }
+        }
+        return $array;
+    }
+    public function getColorsData($attr){
         $array = array();
         foreach($attr as $key => $value){
             if (R::findOne('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $key] )){
@@ -129,6 +146,18 @@ class Model
         $all_forms = $this->getForms();
         $array = $this->getFormsData($all_forms);
         foreach($all_forms as $key => $value){
+            if (in_array($key, $selected) && !in_array($key, $array)){
+                $this->setModelAttribute($this->id,$key);
+            }elseif(in_array($key, $array) && !in_array($key, $selected)){
+                $item = R::findAll('rel_model_attr','model_id = ? AND attr_id = ?', [$this->id, $key] );
+                R::trashAll($item);
+            }
+        }
+    }
+    public function setColors($selected){
+        $all_colors = $this->getColors();
+        $array = $this->getColorsData($all_colors);
+        foreach($all_colors as $key => $value){
             if (in_array($key, $selected) && !in_array($key, $array)){
                 $this->setModelAttribute($this->id,$key);
             }elseif(in_array($key, $array) && !in_array($key, $selected)){
@@ -197,6 +226,7 @@ class Model
     public function createConfigForm(\Silex\Application $app)
     {
         $choices = $this->getForms();
+        $colors = $this->getColors();
         $formBuilder = $app['form.factory']->createNamedBuilder('config', 'form', $this);
         $form = $formBuilder
             ->add('title', 'text', array('constraints' => new Assert\NotBlank()))
@@ -209,6 +239,12 @@ class Model
             ->add('maxDepth', 'number', array('required' => false))
             ->add('embedding', 'checkbox', array('required' => false))
             ->add('faces', 'hidden', array('required' => false))
+            ->add('colors', 'choice', array(
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => $colors,
+                'data' => $this->getColorsData($colors)
+            ))
             ->add('forms', 'choice', array(
                 'multiple' => true,
                 'expanded' => true,

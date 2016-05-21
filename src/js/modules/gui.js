@@ -29,7 +29,7 @@ module.exports = {
     toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
         mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
         mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-        if (event.targetTouches.length == 1) {
+        if (typeof event.targetTouches !== 'undefined' && event.targetTouches.length == 1) {
           mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
           mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
         }
@@ -40,17 +40,15 @@ module.exports = {
 
         var intersects = ray.intersectObject( mesh, true );
         if ( intersects.length > 0 ) {
-          // console.log(intersects[0].face);
           coplanarFaces(mesh.geometry, 0.4, intersects[0].face);
           $('#config_faces').val(JSON.stringify(selFaces));
         }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
-      console.log('move');
         if (SELECTED && MOVE) {
             mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-            if (event.targetTouches.length == 1) {
+            if (typeof event.targetTouches !== 'undefined' && event.targetTouches.length == 1) {
               mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
               mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
             }
@@ -73,14 +71,13 @@ module.exports = {
         }
     },
     selectText: function selectText(event, camera, renderer, mesh, controls,scene) {
-      console.log('select');
         if (text !== undefined) {
 
 
             mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
-            if (event.targetTouches.length == 1) {
+            if (typeof event.targetTouches !== 'undefined' && event.targetTouches.length == 1) {
               mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
               mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
             }
@@ -102,7 +99,7 @@ module.exports = {
                 $(".embedded--edit").hide();
                 $(".embedded--scale--input").hide();
                 controls.enabled = true;
-                SELECTED.material.color.set(7895160);
+                SELECTED.material.color.set(params.color);
 
                 SELECTED = null;
             }
@@ -140,7 +137,7 @@ module.exports = {
         event.preventDefault();
         $(".embedded--edit").hide();
         controls.enabled = true;
-        SELECTED.material.color.set(7895160);
+        SELECTED.material.color.set(params.color);
         SELECTED = null;
         MOVE = false;
         renderer.domElement.style.cursor = "auto";
@@ -229,13 +226,7 @@ function buildGUI(mesh, scene) {
                     scale(mesh);
                 });
                 break;
-            case "color":
-                $(input).on("change", function () {
-                    var colorValue = $(this).val();
-                    var colorObject = new THREE.Color(colorValue);
-                    mesh.material.color = colorObject;
-                });
-                break;
+
             case "size":
                 $(input).on("change", function () {
                     var scaleValue = parseFloat($(this).val());
@@ -260,6 +251,17 @@ function buildGUI(mesh, scene) {
                 break;
         }
     });
+
+
+    $('[data-color]').on("click", function () {
+        $('[data-color]').removeClass('active');
+        $(this).addClass('active');
+        var colorValue = $(this).attr('data-color');
+        var colorObject = new THREE.Color(colorValue);
+        mesh.material.color = colorObject;
+        params.color = colorObject;
+    });
+
 }
 
 function addForm(type, scene) {
@@ -312,7 +314,7 @@ function addForm(type, scene) {
     var centerOffset = -0.5 * (form.boundingBox.max.x - form.boundingBox.min.x);
 
     var Material = new THREE.MeshPhongMaterial({
-        color: 7895160,
+        color: params.color,
         specular: 1118481,
         shininess: 200
     });

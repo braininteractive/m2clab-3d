@@ -80,9 +80,15 @@
                 </div>
             </li>
             <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">Farben</a>
+                <div class="accordion-content" data-tab-content>
+                    {{ form_widget(form.colors, {'attr': {} }) }}
+                </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
                 <a class="accordion-title">Formen</a>
                 <div class="accordion-content" data-tab-content>
-                    {{ dump(form_widget(form.forms, {'attr': {} })) }}
+                    {{ form_widget(form.forms, {'attr': {} }) }}
                 </div>
             </li>
         </ul>
