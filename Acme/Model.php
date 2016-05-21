@@ -212,7 +212,6 @@ class Model
             ->add('forms', 'choice', array(
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'test',
                 'choices' => $choices,
                 'data' => $this->getFormsData($choices)
             ))

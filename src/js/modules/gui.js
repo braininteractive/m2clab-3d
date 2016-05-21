@@ -29,6 +29,10 @@ module.exports = {
     toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
         mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
         mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+        if (event.targetTouches.length == 1) {
+          mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
+          mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
+        }
 
         var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
         projector.unprojectVector( vector, camera );
@@ -42,9 +46,14 @@ module.exports = {
         }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
+      console.log('move');
         if (SELECTED && MOVE) {
             mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            if (event.targetTouches.length == 1) {
+              mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
+              mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
+            }
 
             raycaster.setFromCamera(mouse, camera);
 
@@ -64,11 +73,17 @@ module.exports = {
         }
     },
     selectText: function selectText(event, camera, renderer, mesh, controls,scene) {
+      console.log('select');
         if (text !== undefined) {
 
 
             mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
             mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+            if (event.targetTouches.length == 1) {
+              mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
+              mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
+            }
 
             raycaster.setFromCamera(mouse, camera);
             var intersects = raycaster.intersectObjects(objects, true);
@@ -121,17 +136,15 @@ module.exports = {
         } else {}
     },
     dropText: function dropText(event, camera, renderer, mesh, controls) {
-        if (MOVE) {
-            event.preventDefault();
-            $(".embedded--edit").hide();
-            controls.enabled = true;
-            SELECTED.material.color.set(7895160);
-
-            //plane.position.copy( INTERSECTED.position );
-            SELECTED = null;
-            MOVE = false;
-            renderer.domElement.style.cursor = "auto";
-        }
+      if (MOVE) {
+        event.preventDefault();
+        $(".embedded--edit").hide();
+        controls.enabled = true;
+        SELECTED.material.color.set(7895160);
+        SELECTED = null;
+        MOVE = false;
+        renderer.domElement.style.cursor = "auto";
+      }
     }
 
 };

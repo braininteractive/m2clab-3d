@@ -171,8 +171,18 @@ function render(t) {
 document.getElementById('renderer').onmousemove = function(event) {
     gui.moveText(event, camera, renderer, mesh, scene);
 };
+document.getElementById('renderer').ontouchmove = function(event) {
+    gui.moveText(event, camera, renderer, mesh, scene);
+};
 
 document.getElementById('renderer').onmousedown = function(event) {
+    gui.selectText(event, camera, renderer, mesh, controls, scene);
+    if ($('.admin-renderer').length > 0){
+        gui.toggleSelection(event, camera, renderer, mesh, controls);
+    }
+};
+document.getElementById('renderer').ontouchstart = function(event) {
+  console.log(123);
     gui.selectText(event, camera, renderer, mesh, controls, scene);
     if ($('.admin-renderer').length > 0){
         gui.toggleSelection(event, camera, renderer, mesh, controls);
@@ -181,5 +191,7 @@ document.getElementById('renderer').onmousedown = function(event) {
 
 document.getElementById('renderer').onmouseup = function(event) {
     gui.dropText(event, camera, renderer, mesh, controls);
-
+};
+document.getElementById('renderer').ontouchend = function(event) {
+    gui.dropText(event, camera, renderer, mesh, controls);
 };
