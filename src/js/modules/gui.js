@@ -1,4 +1,4 @@
-// TODO select Faces where its aloud to place objects
+  // TODO select Faces where its aloud to place objects
 
 var $ = require("jquery");
 //var dat = require('dat-gui');
@@ -21,6 +21,9 @@ var embossing;
 var selFaces = [];
 var rotation = 0;
 var allowedFaces = null;
+var plane = new THREE.Plane();
+var intersection = new THREE.Vector3();
+
 module.exports = {
     init: function init(box, mesh, url, scene) {
         mesh.scale.set(params.width, params.height, params.depth);
@@ -35,25 +38,8 @@ module.exports = {
         });
         allowedFaces = JSON.parse($('#config_faces').val());
     },
-    toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls){
-      if (MARK){
-        mouse.x = event.clientX / renderer.domElement.clientWidth * 2 - 1;
-        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-        if (typeof event.targetTouches !== 'undefined' && event.targetTouches.length == 1) {
-          mouse.x = event.targetTouches[0].clientX / renderer.domElement.clientWidth * 2 - 1;
-          mouse.y = -(event.targetTouches[0].clientY / renderer.domElement.clientHeight) * 2 + 1;
-        }
+    toggleSelection: function toggleSelection(event, camera, renderer, mesh, controls, scene){
 
-        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-        projector.unprojectVector( vector, camera );
-        var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-        var intersects = ray.intersectObject( mesh, true );
-        if ( intersects.length > 0 ) {
-          coplanarFaces(mesh.geometry, 0.4, intersects[0].face);
-          $('#config_faces').val(JSON.stringify(selFaces));
-        }
-      }
     },
     moveText: function moveText(event, camera, renderer, mesh) {
         if (SELECTED && MOVE) {
@@ -67,22 +53,7 @@ module.exports = {
             raycaster.setFromCamera(mouse, camera);
 
             var intersects = raycaster.intersectObject(mesh, true);
-            if (intersects.length > 0) {
-              // var inside = false;
-              // if(allowedFaces){
-              //   console.log(allowedFaces[]);
-              //   console.log(intersects[0].face);
-              //   for(var k = 0; k < allowedFaces.length; k++){
-              //     if(intersects[0].face.a == allowedFaces[k].a){
-              //       if(intersects[0].face.b == allowedFaces[k].b){
-              //         if(intersects[0].face.c == allowedFaces[k].c){
-              //           inside = true;
-              //         }
-              //       }
-              //     }
-              //   }
-              // }
-              // if(allowedFaces === null || inside){
+            if (intersects.length > 0 ) {
                 SELECTED.position.copy(intersects[0].point.sub(offset));
                 text.position.set(mouse.x, mouse.y, 0);
                 if (intersects.length > 0) {
@@ -132,6 +103,8 @@ module.exports = {
 
             $('[data-uuid='+ text.name +']').on('click', '.embedded--move', function(){
                 MOVE = true;
+                renderer.domElement.style.cursor = "move";
+                $('.medium').css('cursor','move');
                 $(".embedded--edit").hide();
                 $(".embedded--scale--input").hide();
             });
@@ -167,6 +140,9 @@ module.exports = {
         SELECTED = null;
         MOVE = false;
         renderer.domElement.style.cursor = "auto";
+        if($('form[name=config]').length > 0 ){
+          $('#config_faces').val(JSON.stringify(objects[0]));
+        }
       }
     }
 
@@ -288,8 +264,10 @@ function buildGUI(mesh, scene) {
     });
 
     $('[data-mark]').on('click', function(){
-      $(this).toggleClass('active');
-      MARK = !MARK;
+
+        addForm('wire', scene);
+        MARK = !MARK;
+
     });
 
 }
@@ -338,16 +316,26 @@ function addForm(type, scene) {
         };
 
         form = new THREE.ExtrudeGeometry(starShape, extrusionSettings);
+    } else if (type == 'wire') {
+      form = new THREE.CubeGeometry( 10, 10, 10, 2, 2, 2 );
+
     }
 
     form.computeBoundingBox();
     var centerOffset = -0.5 * (form.boundingBox.max.x - form.boundingBox.min.x);
-
-    var Material = new THREE.MeshPhongMaterial({
+    var Material;
+    if (type !== 'wire'){
+      Material = new THREE.MeshPhongMaterial({
         color: params.color,
         specular: 1118481,
         shininess: 200
-    });
+      });
+    }else{
+      Material = new THREE.MeshPhongMaterial({
+        wireframe: true,
+        color: 0x00ff00
+      });
+    }
 
     if (type == "text" && embossing) {
       scene.remove(text);

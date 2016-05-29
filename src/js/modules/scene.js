@@ -178,14 +178,14 @@ document.getElementById('renderer').ontouchmove = function(event) {
 document.getElementById('renderer').onmousedown = function(event) {
     gui.selectText(event, camera, renderer, mesh, controls, scene);
     if ($('.admin-renderer').length > 0){
-        gui.toggleSelection(event, camera, renderer, mesh, controls);
+        gui.toggleSelection(event, camera, renderer, mesh, controls, scene);
     }
 };
 document.getElementById('renderer').ontouchstart = function(event) {
   console.log(123);
     gui.selectText(event, camera, renderer, mesh, controls, scene);
     if ($('.admin-renderer').length > 0){
-        gui.toggleSelection(event, camera, renderer, mesh, controls);
+        gui.toggleSelection(event, camera, renderer, mesh, controls, scene);
     }
 };
 
